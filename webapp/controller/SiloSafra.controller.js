@@ -2,20 +2,30 @@
 
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/core/routing/History"
-], function (Controller, History) {
+	"sap/ui/core/routing/History",
+	"sap/m/MessageToast"
+], function (Controller, History, MessageToast) {
 	"use strict";
 
 	return Controller.extend("Belagricola.ficha.controller.SiloSafra", {
 		onInit: function() {
-			var router = sap.ui.core.UIComponent.getRouterfor(this);
+			var router = sap.ui.core.UIComponent.getRouterFor(this);
 			router.getRoute("RouteSiloSafra").attachPatternMatched(this._onObjectMatched, this);
+			this.getView().setModel(new sap.ui.model.json.JSONModel({
+				IDSAFRA: "",
+				IDGRAO: "",
+				DATAINI: "",
+				DATAFIM: "",
+				DATAENCH: "",
+				OBSERVACAO: ""
+			}),"safraData");
 		},
 		_onObjectMatched: function(evt) {
-			this.getView().bindElement({
-				path: "/" + evt.getSource().getParameter("arguments").siloSelecionado,
-				model: "silo"
-			});
+			console.log( JSON.parse(evt.getParameter("arguments").siloSelecionado));
+			this.getView().setModel(new sap.ui.model.json.JSONModel({
+				idSilo :JSON.parse(evt.getParameter("arguments").siloSelecionado).idSilo,
+				idFilial: JSON.parse(evt.getParameter("arguments").siloSelecionado).idFilial
+			}), "silo");
 		},
 		onNavBack: function () {
 			var sPreviousHash = History.getInstance().getPreviousHash();
@@ -25,8 +35,24 @@ sap.ui.define([
 				this.getOwnerComponent().getRouter().navTo("RouteSilo", null, true);
 			}
 		},
-		 onSave: function() {
-		 	console.log(this.getView().getModel("silo"));
+		 onSalvar: function() {
+		 	var siloData = JSON.parse(this.getView().getModel("silo").getJSON());
+		 	var safraData = JSON.parse(this.getView().getModel("safraData").getJSON());
+		 	safraData.IDFILIAL = siloData.idFilial;
+		 	safraData.IDSILO = siloData.idSilo;
+		 	/*eslint-disable*/
+		 	safraData.IDSAFRA = parseInt(this.getView().byId("safra").getSelectedKey());
+		 	safraData.IDGRAO = parseInt(this.getView().byId("grao").getSelectedKey());
+		 	/*eslint-enable*/
+		 	if (Object.values(safraData).some(function (s) {
+					return s === undefined || s === "" || s === null;
+				})) {
+				MessageToast.show("Preencha todos os campos", {
+					duration: 3000
+				});
+				return;
+			}
+		 	console.log(safraData);
 		 }
 	});
 });
