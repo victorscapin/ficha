@@ -1,0 +1,34 @@
+{
+    "application": {
+        "id": "",
+        "title": "Belagricola.Ficha.Ficha",
+        "type": "SAP_UI5_Component",
+        "componentUrl": "/",
+        "appUrl": "#Ficha-Display",
+        "navigationComponentName": "Belagricola.Ficha",
+        "intentSemanticObject": "Ficha",
+        "intentAction": "Display",
+        "html5ApplicationName": "ficha",
+        "HCPParentApplicationName": ""
+    },
+    "assignment": {
+        "groups": [
+            "64275f2a-549c-4604-a2fd-717196547880"
+        ],
+        "contentPackages": [
+            "5b000810-2dcd-4566-b2be-251d3c0d3481"
+        ],
+        "categories": []
+    },
+    "tile": {
+        "type": "StaticTile",
+        "title": "Ficha Inteligente",
+        "subtitle": "",
+        "searchKeywords": "Ficha Inteligente,",
+        "displayIconUrl": "sap-icon://approvals",
+        "displayInfoText": "",
+        "size": "1x1",
+        "serviceURL": "",
+        "refreshInterval": ""
+    }
+}
