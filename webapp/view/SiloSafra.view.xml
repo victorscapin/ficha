@@ -1,0 +1,83 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" controllerName="Belagricola.Ficha.controller.SiloSafra">
+	<Page title="Vinculo Silo Safra" showFooter="true" showHeader="true" showNavButton="true" navButtonPress="onNavBack">
+		<content>
+			<f:Form id="form" editable="true">
+				<f:title>
+					<core:Title text="Silo x Safra"/>
+				</f:title>
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
+						emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Filial">
+								<f:fields>
+									<Select id="filial" items="{/FILIALDATA}" >
+										<items>
+											<core:Item text="{NOME}" key="{ID}"/>
+										</items>
+									</Select>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Silo">
+								<f:fields>
+									<Select id="silo" items="{/SILODATA}" enabled="">
+										<items>
+											<core:Item text="{NOME}" key="{ID}"/>
+										</items>
+									</Select>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Safra">
+								<f:fields>
+									<Select id="safra">
+										<items>
+											<core:Item text="Safra 2" key="1"/>
+										</items>
+									</Select>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Grão">
+								<f:fields>
+									<Select id="grao">
+										<items>
+											<core:Item text="Grão 1" key="1"/>
+										</items>
+									</Select>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Data Inicio Safra">
+								<f:fields>
+									<DatePicker></DatePicker>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Data Final Safra">
+								<f:fields>
+									<DatePicker></DatePicker>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Data Termino Enchimento">
+								<f:fields>
+									<DatePicker>
+									</DatePicker>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Observação">
+								<f:fields>
+									<TextArea />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="">
+								<f:fields>
+									<Button text="Salvar"/>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</content>
+	</Page>
+</mvc:View>

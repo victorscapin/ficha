@@ -1,0 +1,71 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	controllerName="Belagricola.Ficha.controller.SiloData">
+	<Page title="Gerência de Silos" showNavButton="true" navButtonPress="onNavBack">
+		<f:Form id="form" editable="true">
+			<f:title>
+				<core:Title text="Silo"/>
+			</f:title>
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
+					emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label="Nome">
+							<f:fields>
+								<Input value="{ path: 'silo>/NOME', type: 'sap.ui.model.type.String', constraints: { maxLength: 50}}" id="nome" required="true"
+									editable="{edit>/isEdit}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Filial">
+							<f:fields required="true">
+								<Select id="filial" selectedKey="{ path: 'silo>/IDFILIAL'}" items="{/FILIALDATA}" enabled="{edit>/isEdit}">
+									<items>
+										<core:Item text="{NOME}" key="{ID}"/>
+									</items>
+								</Select>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Tipo Silo">
+							<f:fields required="true">
+								<Select id="tipoSilo" items="{/TIPOSILODATA}" selectedKey="{ path: 'silo>/IDTIPOSILO'}" enabled="{edit>/isEdit}">
+									<items>
+										<core:Item text="{NOME}" key="{ID}"/>
+									</items>
+								</Select>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Capacidade">
+							<f:fields>
+								<Input id="capacidade" value="{ path: 'silo>/CAPACIDADE', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 4 } }"
+									editable="{edit>/isEdit}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Potencia">
+							<f:fields>
+								<Input value="{ path: 'silo>/POTENCIA', type: 'sap.ui.model.type.Float' }" id="potencia" required="true" editable="{edit>/isEdit}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Numero de Cabos">
+							<f:fields>
+								<Input value="{ path: 'silo>/NUMEROCABOS', type: 'sap.ui.model.type.Float'}" id="nCabos" editable="{edit>/isEdit}"/>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+					<f:FormElement label="Observação">
+						<f:fields>
+							<TextArea value="{ path: 'silo>/DESCRICAO', type: 'sap.ui.model.type.String', constraints: { maxLength: 200 } }" id="observacao"
+								editable="{edit>/isEdit}"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="">
+						<f:fields>
+							<Button id="btnSalvar" text="Salvar" press="onSave" visible="{edit>/isEdit}"/>
+						</f:fields>
+					</f:FormElement>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+	</Page>
+</mvc:View>

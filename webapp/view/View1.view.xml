@@ -1,0 +1,20 @@
+<mvc:View 
+	controllerName="Belagricola.Ficha.controller.View1" 
+	xmlns:html="http://www.w3.org/1999/xhtml" 
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns="sap.m">
+	<App id="idAppControl">
+		<pages>
+			<Page title="Ficha Inteligente">
+				<content>
+					<GenericTile header="Silos" subheader="Gerência de silos" frameType="OneByOne" class="sapUiResponsiveMargin" press="onToRouteSilo">
+						<TileContent footer="" unit="">
+							<ImageContent src="sap-icon://offsite-work"/>
+						</TileContent>
+					</GenericTile>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

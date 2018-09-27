@@ -1,0 +1,39 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="Belagricola.Ficha.controller.Silo" xmlns="sap.m">
+	<Page showHeader="true" title="Gerência de Silos" showFooter="true" showNavButton="true" navButtonPress="_onPageNavButtonPress">
+		<content>
+			<Table id="grdSilo" mode="SingleSelectLeft" selectionChange="onSeleciona"
+				items="{ path : '/SILODATA', sorter: { path: 'NOME' }, filters : [ { path : 'REMOVIDO', operator : 'EQ', value1 : 0 } ] }">
+				<headerToolbar>
+					<Toolbar>
+						<Title text="Silos"/>
+						<ToolbarSpacer/>
+						<Button text="Novo" press="onNewPress"/>
+						<Button text="Remover" press="onDeletePress"/>
+						<Button text="Vincular" press="onVincular" enabled="{selected>/isSelected}"/>
+						<SearchField id="txtSearch" search="onSearch" width="auto"></SearchField>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column id="colNome">
+						<Text text="Nome"/>
+					</Column>
+					<Column id="colCapacidade">
+						<Text text="Capacidade"/>
+					</Column>
+					<Column id="colDescricao" hAlign="End">
+						<Text text="Descrição"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation" press="clicaSilo">
+						<cells>
+							<ObjectIdentifier title="{NOME}"/>
+							<ObjectIdentifier title="{CAPACIDADE}"/>
+							<ObjectIdentifier title="{DESCRICAO}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+</mvc:View>
