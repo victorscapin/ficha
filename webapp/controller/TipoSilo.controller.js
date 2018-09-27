@@ -10,12 +10,7 @@ sap.ui.define([
 	return Controller.extend("Belagricola.Ficha.controller.TipoSilo", {
 
 		onInit: function () {
-			/*var filtro = [];
-			filtro.push(new Filter("REMOVIDO", FilterOperator.Equals, 0));
 			
-			var table = this.byId("grdTipoSilo");
-			var bind = table.getBinding("items");
-			bind.filter(filtro);*/
 		},
 		
 		_onPageNavButtonPress: function () {
@@ -41,24 +36,14 @@ sap.ui.define([
 		onNewPress: function() {
 			//this.getOwnerComponent().getRouter().navTo("RouteTipoSiloData");
 		},
-		clicaSilo: function(evt) {
-			/*var item = evt.getSource(); 
-			var router = sap.ui.core.UIComponent.getRouterFor(this);
-			var data = item.getBindingContext().getObject();
-			router.navTo("RouteTipoSiloData", {
-				siloPath: {
-					NOME: data.NOME,
-					IDUSUARIO: data.IDUSUARIO,
-					REMOVIDO: data.REMOVIDO
-				}
-			});*/
-		},
+		
 		onDeletePress: function() {
 	    	var aItems = this.getView().byId("grdTipoSilo").getItems();
 		    var aSelectedItems = [];
 		    for (var i = 0; i < aItems.length; i++) {
-				if (aItems[i].getSelected())
-		            aSelectedItems.push(aItems[i].getBindingContext().getObject().ID);
+				if (aItems[i].getSelected()) {
+					aSelectedItems.push(aItems[i].getBindingContext().getObject().ID);
+				}
 		    }
 		    
         	var dataValue = JSON.stringify(aSelectedItems.toString());
@@ -78,9 +63,6 @@ sap.ui.define([
         	});
         	
         	this.getView().getModel().refresh();
-		},
-		onVincular: function() {
-			this.getOwnerComponent().getRouter().navTo("RouteTipoSiloSafra");
 		}
 
 	});
