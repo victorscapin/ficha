@@ -11,6 +11,10 @@ sap.ui.define([
 
 		onToRouteSilo: function () {
 			this.getOwnerComponent().getRouter().navTo("RouteSilo");
+		},
+		
+		onToRouteTipoSilo: function () {
+			this.getOwnerComponent().getRouter().navTo("RouteTipoSilo");
 		}
 	});
 }, /* bExport= */ true);

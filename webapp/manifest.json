@@ -110,6 +110,11 @@
 					"name": "RouteSiloSafra",
 					"pattern": "RouteSiloSafra",
 					"target": ["TargetSiloSafra"]
+				},
+				{
+					"name": "RouteTipoSilo",
+					"pattern": "RouteTipoSilo",
+					"target": ["TargettipoSilo"]
 				}
 			],
 			"targets": {
@@ -136,6 +141,12 @@
 					"transition": "slide",
 					"clearControlAggregation": false,
 					"viewName": "SiloSafra"
+				},
+				"TargettipoSilo": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "TipoSilo"
 				}
 			}
 		}
