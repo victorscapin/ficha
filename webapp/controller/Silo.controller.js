@@ -10,15 +10,11 @@ sap.ui.define([
 	return Controller.extend("Belagricola.Ficha.controller.Silo", {
 
 		onInit: function () {
-			/*var filtro = [];
-			filtro.push(new Filter("REMOVIDO", FilterOperator.Equals, 0));
-			
-			var table = this.byId("grdSilo");
-			var bind = table.getBinding("items");
-			bind.filter(filtro);*/
+
 		},
 
 		_onPageNavButtonPress: function () {
+
 			var sPreviousHash = History.getInstance().getPreviousHash();
 			if (sPreviousHash !== undefined) {
 				window.history.go(-1);
@@ -41,6 +37,7 @@ sap.ui.define([
 		onNewPress: function() {
 			this.getOwnerComponent().getRouter().navTo("RouteSiloData");
 		},
+		
 		clicaSilo: function(evt) {
 			var item = evt.getSource(); 
 			var router = sap.ui.core.UIComponent.getRouterFor(this);
@@ -58,6 +55,7 @@ sap.ui.define([
 				}
 			});
 		},
+		
 		onDeletePress: function() {
 	    	var aItems = this.getView().byId("grdSilo").getItems();
 		    var aSelectedItems = [];
@@ -84,6 +82,7 @@ sap.ui.define([
         	
         	this.getView().getModel().refresh();
 		},
+		
 		onVincular: function() {
 			this.getOwnerComponent().getRouter().navTo("RouteSiloSafra");
 		}
