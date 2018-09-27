@@ -1,7 +1,7 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="Belagricola.Ficha.controller.Silo" xmlns="sap.m">
 	<Page showHeader="true" title="Gerência de Silos" showFooter="true" showNavButton="true" navButtonPress="_onPageNavButtonPress">
 		<content>
-			<Table id="grdSilo" mode="SingleSelectLeft"
+			<Table id="grdSilo" mode="SingleSelectLeft" selectionChange="onSeleciona"
 				items="{ path : '/SILODATA', sorter: { path: 'NOME' }, filters : [ { path : 'REMOVIDO', operator : 'EQ', value1 : 0 } ] }">
 				<headerToolbar>
 					<Toolbar>
@@ -9,7 +9,7 @@
 						<ToolbarSpacer/>
 						<Button text="Novo" press="onNewPress"/>
 						<Button text="Remover" press="onDeletePress"/>
-						<Button text="Vincular" press="onVincular" enabled="true"/>
+						<Button text="Vincular" press="onVincular" enabled="{selected>/isSelected}"/>
 						<SearchField id="txtSearch" search="onSearch" width="auto"></SearchField>
 					</Toolbar>
 				</headerToolbar>

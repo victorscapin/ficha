@@ -1,3 +1,5 @@
+/* eslint no-console: 0 */
+
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/core/routing/History",
@@ -84,7 +86,15 @@ sap.ui.define([
 		},
 		
 		onVincular: function() {
-			this.getOwnerComponent().getRouter().navTo("RouteSiloSafra");
+			var grid = this.getView().byId("grdSilo");
+			this.getOwnerComponent().getRouter().navTo("RouteSiloSafra", {
+				siloSelecionado: grid.getSelectedItem().getBindingContext().getPath().substr(1)
+			});
+		},
+		onSeleciona: function(evt) {
+			this.getView().setModel(new sap.ui.model.json.JSONModel({
+				isSelected: true
+			}),"selected");
 		}
 
 	});

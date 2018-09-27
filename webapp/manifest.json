@@ -114,7 +114,7 @@
 				{
 					"name": "RouteTipoSilo",
 					"pattern": "RouteTipoSilo",
-					"target": ["TargettipoSilo"]
+					"target": ["TargetTipoSilo"]
 				}
 			],
 			"targets": {
@@ -142,7 +142,7 @@
 					"clearControlAggregation": false,
 					"viewName": "SiloSafra"
 				},
-				"TargettipoSilo": {
+				"TargetTipoSilo": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
