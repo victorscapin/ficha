@@ -16,6 +16,7 @@ sap.ui.define([
 			oRouter.getRoute("RouteSiloData").attachPatternMatched(this._onObjectMatched, this);
 			sap.ui.getCore().getMessageManager().registerObject(this.getView(), true);
 			var silo = new sap.ui.model.json.JSONModel({
+				ID: "",
 				NOME: "",
 				IDTIPOSILO: "",
 				IDFILIAL: "",
@@ -35,6 +36,7 @@ sap.ui.define([
 			var form = this.byId("form");
 			if (!params["?siloPath"]) {
 				var siloVazio = new sap.ui.model.json.JSONModel({
+					ID: "",
 					NOME: "",
 					IDFILIAL: "",
 					IDTIPOSILO: "",
@@ -67,7 +69,7 @@ sap.ui.define([
 		onSave: function (event) {
 			var oModel = this.getView().getModel();
 			var data = JSON.parse(this.byId("form").getModel("silo").getJSON());
-			data.IDFILIAL = this.getView().byId("filial").getSelectedKey();
+			
 			if (Object.values(data).some(function (s) {
 					return s === undefined || s === "" || s === null;
 				})) {
@@ -76,9 +78,9 @@ sap.ui.define([
 				});
 				return;
 			}
-			data.IDFILIAL = parseInt(data.IDFILIAL, 10);
+			data.IDFILIAL = parseInt(this.getView().byId("filial").getSelectedKey(), 10);
 			data.IDTIPOSILO = parseInt(data.IDTIPOSILO, 10);
-			//data.DATA = new Date();
+
 			jQuery.ajax({
 				url: "/ServiceOData/FichaInteligente/Silo/insert.xsjs",
 				async: false,
@@ -89,15 +91,11 @@ sap.ui.define([
 				method: "GET",
 				dataType: "text",
 				success: function (res) {
-					MessageToast.show("Sucesso", {
-						duration: 3000
-					});
+					MessageToast.show("Sucesso", { duration: 3000 });
 					console.log(res);
 				},
 				error: function (err) {
-					MessageToast.show("Erro", {
-						duration: 3000
-					});
+					MessageToast.show("Erro", { duration: 3000 });
 					console.log(err);
 				}
 			});

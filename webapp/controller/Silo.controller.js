@@ -19,7 +19,6 @@ sap.ui.define([
 		},
 
 		_onPageNavButtonPress: function () {
-
 			var sPreviousHash = History.getInstance().getPreviousHash();
 			if (sPreviousHash !== undefined) {
 				window.history.go(-1);
@@ -49,8 +48,8 @@ sap.ui.define([
 			var data = item.getBindingContext().getObject();
 			router.navTo("RouteSiloData", {
 				siloPath: {
-					NOME: data.NOME,
 					ID: data.ID,
+					NOME: data.NOME,
 					IDFILIAL: data.IDFILIAL,
 					NUMEROCABOS: data.NUMEROCABOS,
 					POTENCIA: data.POTENCIA,
