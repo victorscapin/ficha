@@ -13,8 +13,8 @@ sap.ui.define([
 			this.getOwnerComponent().getRouter().navTo("RouteSilo");
 		},
 		
-		onToRouteTipoSilo: function () {
-			this.getOwnerComponent().getRouter().navTo("RouteTipoSilo");
+		onToRouteAreacao: function () {
+			this.getOwnerComponent().getRouter().navTo("RouteAreacao");
 		}
 	});
 }, /* bExport= */ true);

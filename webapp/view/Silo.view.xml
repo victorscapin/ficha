@@ -8,7 +8,7 @@
 						<Title text="Silos"/>
 						<ToolbarSpacer/>
 						<Button text="Novo" press="onNewPress"/>
-						<Button text="Remover" press="onDeletePress"/>
+						<Button text="Remover" press="onDeletePress" enabled="{selected>/isSelected}"/>
 						<Button text="Vincular" press="onVincular" enabled="{selected>/isSelected}"/>
 						<SearchField id="txtSearch" search="onSearch" width="auto"></SearchField>
 					</Toolbar>

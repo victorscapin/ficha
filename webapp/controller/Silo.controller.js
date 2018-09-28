@@ -5,8 +5,9 @@ sap.ui.define([
 	"sap/ui/core/routing/History",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
-	"sap/m/MessageToast"
-], function (Controller, History, Filter, FilterOperator, MessageToast) {
+	"sap/m/MessageToast",
+	"sap/m/MessageBox"
+], function (Controller, History, Filter, FilterOperator, MessageToast, MessageBox) {
 	"use strict";
 
 	return Controller.extend("Belagricola.Ficha.controller.Silo", {
@@ -36,7 +37,6 @@ sap.ui.define([
 		},
 
 		_onPageNavButtonPress: function () {
-
 			var sPreviousHash = History.getInstance().getPreviousHash();
 			if (sPreviousHash !== undefined) {
 				window.history.go(-1);
@@ -66,8 +66,8 @@ sap.ui.define([
 			var data = item.getBindingContext().getObject();
 			router.navTo("RouteSiloData", {
 				siloPath: {
-					NOME: data.NOME,
 					ID: data.ID,
+					NOME: data.NOME,
 					IDFILIAL: data.IDFILIAL,
 					NUMEROCABOS: data.NUMEROCABOS,
 					POTENCIA: data.POTENCIA,
@@ -79,36 +79,43 @@ sap.ui.define([
 		},
 
 		onDeletePress: function () {
-			var aItems = this.getView().byId("grdSilo").getItems();
-			var aSelectedItems = [];
-			for (var i = 0; i < aItems.length; i++) {
-				if (aItems[i].getSelected())
-					aSelectedItems.push(aItems[i].getBindingContext().getObject().ID);
-			}
+			var me = this;
+			
+			MessageBox.show("Deseja remover esse item?", {
+        		icon: MessageBox.Icon.WARNING,
+        		title: "REMOVER",
+        		actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+        		onClose : function(sButton) {
+			        if (sButton === MessageBox.Action.YES) {
+			            var aItems = me.getView().byId("grdSilo").getItems();
+						var aSelectedItems = [];
+						for (var i = 0; i < aItems.length; i++) {
+							if (aItems[i].getSelected())
+								aSelectedItems.push(aItems[i].getBindingContext().getObject().ID);
+						}
 
-			var dataValue = JSON.stringify(aSelectedItems.toString());
-			jQuery.ajax({
-				url: "/ServiceOData/FichaInteligente/Silo/delete.xsjs",
-				async: false,
-				TYPE: "POST",
-				data: {
-					lstIds: dataValue
-				},
-				method: "GET",
-				dataType: "text",
-				success: function (res) {
-					MessageToast.show("Success", {
-						duration: 3000
-					});
-				},
-				error: function (err) {
-					MessageToast.show("Erro", {
-						duration: 3000
-					});
-				}
+						var dataValue = JSON.stringify(aSelectedItems.toString());
+						jQuery.ajax({
+							url: "/ServiceOData/FichaInteligente/Silo/delete.xsjs",
+							async: false,
+							TYPE: "POST",
+							data: {
+								lstIds: dataValue
+							},
+							method: "GET",
+							dataType: "text",
+							success: function (res) {
+								MessageToast.show("Item removido!", { duration: 3000 });
+							},
+							error: function (err) {
+								MessageToast.show("Erro: " + err, { duration: 3000 });
+							}
+						});
+
+						me.getView().getModel().refresh();
+			        }
+        		}
 			});
-
-			this.getView().getModel().refresh();
 		},
 
 		onVincular: function () {
@@ -120,6 +127,7 @@ sap.ui.define([
 				})
 			});
 		},
+		
 		onSeleciona: function (evt) {
 
 			var podeVincular = this.getView().getModel("silosVinculados").some(function (s) {
