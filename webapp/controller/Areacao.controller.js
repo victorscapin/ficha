@@ -7,10 +7,15 @@ sap.ui.define([
 ], function (Controller, History, Filter, FilterOperator, MessageToast) {
 	"use strict";
 
-	return Controller.extend("Belagricola.Ficha.controller.TipoSilo", {
+	return Controller.extend("Belagricola.Ficha.controller.Areacao", {
 
 		onInit: function () {
+			/*var filtro = [];
+			filtro.push(new Filter("REMOVIDO", FilterOperator.Equals, 0));
 			
+			var table = this.byId("grdAreacao");
+			var bind = table.getBinding("items");
+			bind.filter(filtro);*/
 		},
 		
 		_onPageNavButtonPress: function () {
@@ -28,27 +33,35 @@ sap.ui.define([
 			if(param) {
 				filtro.push(new Filter("NOME", FilterOperator.Contains, param));
 			}
-			var table = this.byId("grdTipoSilo");
+			var table = this.byId("grdAreacao");
 			var bind = table.getBinding("items");
 			bind.filter(filtro);
 		},
 		
 		onNewPress: function() {
-			//this.getOwnerComponent().getRouter().navTo("RouteTipoSiloData");
+			this.getOwnerComponent().getRouter().navTo("RouteAreacaoData");
 		},
-		
+		clicaAreacao: function(evt) {
+			/*var item = evt.getSource(); 
+			var router = sap.ui.core.UIComponent.getRouterFor(this);
+			var data = item.getBindingContext().getObject();
+			router.navTo("RouteAreacaoData", {
+				areacaoPath: {
+					NOME: data.NOME
+				}
+			});*/
+		},
 		onDeletePress: function() {
-	    	var aItems = this.getView().byId("grdTipoSilo").getItems();
+	    	var aItems = this.getView().byId("grdAreacao").getItems();
 		    var aSelectedItems = [];
 		    for (var i = 0; i < aItems.length; i++) {
-				if (aItems[i].getSelected()) {
-					aSelectedItems.push(aItems[i].getBindingContext().getObject().ID);
-				}
+				if (aItems[i].getSelected())
+		            aSelectedItems.push(aItems[i].getBindingContext().getObject().ID);
 		    }
 		    
         	var dataValue = JSON.stringify(aSelectedItems.toString());
         	jQuery.ajax({
-    			url: "/ServiceOData/FichaInteligente/TipoSilo/delete.xsjs",
+    			url: "/ServiceOData/FichaInteligente/Areacao/delete.xsjs",
             	async: false,
             	TYPE: "POST" ,
             	data: { lstIds: dataValue },
@@ -61,9 +74,8 @@ sap.ui.define([
             		MessageToast.show("Erro", {duration: 3000});
             	}
         	});
-        	
         	this.getView().getModel().refresh();
 		}
 
 	});
-}, /* bExport= */ true);
+}, true);

@@ -112,9 +112,14 @@
 					"target": ["TargetSiloSafra"]
 				},
 				{
-					"name": "RouteTipoSilo",
-					"pattern": "RouteTipoSilo",
-					"target": ["TargetTipoSilo"]
+					"name": "RouteAreacao",
+					"pattern": "RouteAreacao",
+					"target": ["TargetAreacao"]
+				},
+				{
+					"name": "RouteAreacaoData",
+					"pattern": "RouteAreacaoData",
+					"target": ["TargetAreacaoData"]
 				}
 			],
 			"targets": {
@@ -142,11 +147,17 @@
 					"clearControlAggregation": false,
 					"viewName": "SiloSafra"
 				},
-				"TargetTipoSilo": {
+				"TargetAreacao": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
-					"viewName": "TipoSilo"
+					"viewName": "Areacao"
+				},
+				"TargetAreacaoData": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "AreacaoData"
 				}
 			}
 		}
