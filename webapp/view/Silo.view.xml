@@ -20,6 +20,9 @@
 					<Column id="colCapacidade">
 						<Text text="Capacidade"/>
 					</Column>
+					<Column id="colVinculo">
+						<Text text="Vinculado"/>
+					</Column>
 					<Column id="colDescricao" hAlign="End">
 						<Text text="Descrição"/>
 					</Column>
@@ -29,6 +32,7 @@
 						<cells>
 							<ObjectIdentifier title="{NOME}"/>
 							<ObjectIdentifier title="{CAPACIDADE}"/>
+							<ObjectIdentifier title=""/>
 							<ObjectIdentifier title="{DESCRICAO}"/>
 						</cells>
 					</ColumnListItem>

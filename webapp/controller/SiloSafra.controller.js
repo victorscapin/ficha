@@ -21,7 +21,6 @@ sap.ui.define([
 			}),"safraData");
 		},
 		_onObjectMatched: function(evt) {
-			console.log( JSON.parse(evt.getParameter("arguments").siloSelecionado));
 			this.getView().setModel(new sap.ui.model.json.JSONModel({
 				idSilo :JSON.parse(evt.getParameter("arguments").siloSelecionado).idSilo,
 				idFilial: JSON.parse(evt.getParameter("arguments").siloSelecionado).idFilial
@@ -44,6 +43,8 @@ sap.ui.define([
 		 	safraData.IDSAFRA = parseInt(this.getView().byId("safra").getSelectedKey());
 		 	safraData.IDGRAO = parseInt(this.getView().byId("grao").getSelectedKey());
 		 	/*eslint-enable*/
+		 	var obs = safraData.OBSERVACAO; 
+			delete safraData.OBSERVACAO;
 		 	if (Object.values(safraData).some(function (s) {
 					return s === undefined || s === "" || s === null;
 				})) {
@@ -52,7 +53,33 @@ sap.ui.define([
 				});
 				return;
 			}
-		 	console.log(safraData);
+			safraData.OBSERVACAO = obs;
+			safraData.DATAINI = this.getView().byId('dataIni').getDateValue();
+			safraData.DATAFIM = this.getView().byId('dataFim').getDateValue();
+			safraData.DATAENCH = this.getView().byId('dataEnch').getDateValue();
+		 	jQuery.ajax({
+				url: "/ServiceOData/FichaInteligente/SiloSafra/insert.xsjs",
+				async: false,
+				TYPE: "POST",
+				data: {
+					dataobject: JSON.stringify(safraData)
+				},
+				method: "GET",
+				dataType: "text",
+				success: function (res) {
+					MessageToast.show("Sucesso", {
+						duration: 3000
+					});
+					console.log(res);
+				},
+				error: function (err) {
+					MessageToast.show("Erro", {
+						duration: 3000
+					});
+					console.log(err);
+				}
+			});
+			this.onNavBack();
 		 }
 	});
 });

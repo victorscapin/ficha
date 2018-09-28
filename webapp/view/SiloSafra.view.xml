@@ -14,9 +14,9 @@
 						<f:formElements>
 							<f:FormElement label="Safra">
 								<f:fields>
-									<Select id="safra" selectedKey="{ path: 'safraData>/IDSAFRA' }">
+									<Select id="safra" selectedKey="{ path: 'safraData>/IDSAFRA' }" items="{/SAFRADATA}">
 										<items>
-											<core:Item text="Safra 2" key="1"/>
+											<core:Item text="{ANOSFR}" key="{CODIGO}"/>
 										</items>
 									</Select>
 								</f:fields>
@@ -32,17 +32,17 @@
 							</f:FormElement>
 							<f:FormElement label="Data Inicio Safra">
 								<f:fields>
-									<DatePicker id="dataIni" value="{path: 'safraData>/DATAINI', type: 'sap.ui.type.Date'}"></DatePicker>
+									<DatePicker id="dataIni" value="{path: 'safraData>/DATAINI', type: 'sap.ui.type.Date'}" required="true"></DatePicker>
 								</f:fields>
 							</f:FormElement>
 							<f:FormElement label="Data Final Safra">
 								<f:fields>
-									<DatePicker id="dataFim" value="{path: 'safraData>/DATAFIM', type: 'sap.ui.type.Date'}"></DatePicker>
+									<DatePicker id="dataFim" value="{path: 'safraData>/DATAFIM', type: 'sap.ui.type.Date'}" required="true"></DatePicker>
 								</f:fields>
 							</f:FormElement>
 							<f:FormElement label="Data Termino Enchimento">
 								<f:fields>
-									<DatePicker id="dataEnch" value="{path: 'safraData>/DATAENCH', type: 'sap.ui.type.Date'}">
+									<DatePicker id="dataEnch" value="{path: 'safraData>/DATAENCH', type: 'sap.ui.type.Date'}" required="true">
 									</DatePicker>
 								</f:fields>
 							</f:FormElement>

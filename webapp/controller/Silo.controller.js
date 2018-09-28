@@ -12,9 +12,27 @@ sap.ui.define([
 	return Controller.extend("Belagricola.Ficha.controller.Silo", {
 
 		onInit: function () {
-			this.getView().setModel(new sap.ui.model.json.JSONModel({
-				isSelected: false
-			}), "selected");
+			var ids = [];
+			var context = this;
+			new sap.ui.model.odata.ODataModel("/ServiceOData/FichaInteligente/ODataService.xsodata/").read('/SILOSAFRADATA', null, null, true,
+				function (oData, response) {
+					if (response.statusCode !== 200)
+						return;
+					ids = oData.results.map(function (m) {
+						return m.IDSILO;
+					});
+					context.getView().setModel(ids, "silosVinculados");
+					context.getView().setModel(new sap.ui.model.json.JSONModel({
+						isSelected: false,
+						isVinc: function () {
+							return "oi";
+							// console.log(id);
+							// return context.getView().getModel("silosVinculados").some(function (s) {
+							// 	return id === s;
+							// });
+						}
+					}), "selected");
+				});
 		},
 
 		_onPageNavButtonPress: function () {
@@ -103,8 +121,12 @@ sap.ui.define([
 			});
 		},
 		onSeleciona: function (evt) {
+
+			var podeVincular = this.getView().getModel("silosVinculados").some(function (s) {
+				return evt.getSource().getSelectedItem().getBindingContext().getObject().ID === s;
+			});
 			this.getView().setModel(new sap.ui.model.json.JSONModel({
-				isSelected: true
+				isSelected: podeVincular
 			}), "selected");
 		}
 
