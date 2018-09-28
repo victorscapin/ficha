@@ -12,7 +12,7 @@ sap.ui.define([
 	return Controller.extend("Belagricola.Ficha.controller.Silo", {
 
 		onInit: function () {
-
+			
 		},
 
 		_onPageNavButtonPress: function () {

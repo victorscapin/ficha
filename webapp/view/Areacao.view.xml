@@ -1,0 +1,30 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="Belagricola.Ficha.controller.Areacao" xmlns="sap.m">
+	<Page showHeader="true" title="Gerência de Areações" showFooter="true" showNavButton="true" navButtonPress="_onPageNavButtonPress">
+		<content>
+			<Table id="grdAreacao" mode="SingleSelectLeft"
+				items="{ path : '/AREACAODATA', sorter: { path: 'NOME' }, filters : [ { path : 'REMOVIDO', operator : 'EQ', value1 : 0 } ] }">
+				<headerToolbar>
+					<Toolbar>
+						<Title text="Areações"/>
+						<ToolbarSpacer/>
+						<Button text="Novo" press="onNewPress"/>
+						<Button text="Remover" press="onDeletePress"/>
+						<SearchField id="txtSearch" search="onSearch" width="auto"></SearchField>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column id="colNome">
+						<Text text="Nome da Areação"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation" press="clicaAreacao">
+						<cells>
+							<ObjectIdentifier title="{NOME}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+</mvc:View>
