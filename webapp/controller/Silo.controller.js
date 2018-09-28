@@ -12,7 +12,13 @@ sap.ui.define([
 	return Controller.extend("Belagricola.Ficha.controller.Silo", {
 
 		onInit: function () {
+<<<<<<< HEAD
 			
+=======
+			this.getView().setModel(new sap.ui.model.json.JSONModel({
+				isSelected: false
+			}), "selected");
+>>>>>>> refs/heads/master
 		},
 
 		_onPageNavButtonPress: function () {
@@ -24,24 +30,24 @@ sap.ui.define([
 				this.getOwnerComponent().getRouter().navTo("RouteView1", null, true);
 			}
 		},
-		
-		onSearch: function(event) {
+
+		onSearch: function (event) {
 			var filtro = [];
 			var param = event.getParameter("query");
-			if(param) {
+			if (param) {
 				filtro.push(new Filter("NOME", FilterOperator.Contains, param));
 			}
 			var table = this.byId("grdSilo");
 			var bind = table.getBinding("items");
 			bind.filter(filtro);
 		},
-		
-		onNewPress: function() {
+
+		onNewPress: function () {
 			this.getOwnerComponent().getRouter().navTo("RouteSiloData");
 		},
-		
-		clicaSilo: function(evt) {
-			var item = evt.getSource(); 
+
+		clicaSilo: function (evt) {
+			var item = evt.getSource();
 			var router = sap.ui.core.UIComponent.getRouterFor(this);
 			var data = item.getBindingContext().getObject();
 			router.navTo("RouteSiloData", {
@@ -57,44 +63,53 @@ sap.ui.define([
 				}
 			});
 		},
-		
-		onDeletePress: function() {
-	    	var aItems = this.getView().byId("grdSilo").getItems();
-		    var aSelectedItems = [];
-		    for (var i = 0; i < aItems.length; i++) {
+
+		onDeletePress: function () {
+			var aItems = this.getView().byId("grdSilo").getItems();
+			var aSelectedItems = [];
+			for (var i = 0; i < aItems.length; i++) {
 				if (aItems[i].getSelected())
-		            aSelectedItems.push(aItems[i].getBindingContext().getObject().ID);
-		    }
-		    
-        	var dataValue = JSON.stringify(aSelectedItems.toString());
-        	jQuery.ajax({
-    			url: "/ServiceOData/FichaInteligente/Silo/delete.xsjs",
-            	async: false,
-            	TYPE: "POST" ,
-            	data: { lstIds: dataValue },
-            	method: "GET",
-            	dataType: "text",
-            	success: function(res) {
-        			MessageToast.show("Success", {duration: 3000});
-            	},
-            	error: function(err) {
-            		MessageToast.show("Erro", {duration: 3000});
-            	}
-        	});
-        	
-        	this.getView().getModel().refresh();
+					aSelectedItems.push(aItems[i].getBindingContext().getObject().ID);
+			}
+
+			var dataValue = JSON.stringify(aSelectedItems.toString());
+			jQuery.ajax({
+				url: "/ServiceOData/FichaInteligente/Silo/delete.xsjs",
+				async: false,
+				TYPE: "POST",
+				data: {
+					lstIds: dataValue
+				},
+				method: "GET",
+				dataType: "text",
+				success: function (res) {
+					MessageToast.show("Success", {
+						duration: 3000
+					});
+				},
+				error: function (err) {
+					MessageToast.show("Erro", {
+						duration: 3000
+					});
+				}
+			});
+
+			this.getView().getModel().refresh();
 		},
-		
-		onVincular: function() {
+
+		onVincular: function () {
 			var grid = this.getView().byId("grdSilo");
 			this.getOwnerComponent().getRouter().navTo("RouteSiloSafra", {
-				siloSelecionado: grid.getSelectedItem().getBindingContext().getPath().substr(1)
+				siloSelecionado: JSON.stringify({
+					idSilo: grid.getSelectedItem().getBindingContext().getObject().ID,
+					idFilial: grid.getSelectedItem().getBindingContext().getObject().IDFILIAL
+				})
 			});
 		},
-		onSeleciona: function(evt) {
+		onSeleciona: function (evt) {
 			this.getView().setModel(new sap.ui.model.json.JSONModel({
 				isSelected: true
-			}),"selected");
+			}), "selected");
 		}
 
 	});

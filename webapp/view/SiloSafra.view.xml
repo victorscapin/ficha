@@ -12,27 +12,9 @@
 				<f:formContainers>
 					<f:FormContainer>
 						<f:formElements>
-							<f:FormElement label="Filial">
-								<f:fields>
-									<Select id="filial" items="{/FILIALDATA}" >
-										<items>
-											<core:Item text="{NOME}" key="{ID}"/>
-										</items>
-									</Select>
-								</f:fields>
-							</f:FormElement>
-							<f:FormElement label="Silo">
-								<f:fields>
-									<Select id="silo" items="{/SILODATA}" enabled="">
-										<items>
-											<core:Item text="{NOME}" key="{ID}"/>
-										</items>
-									</Select>
-								</f:fields>
-							</f:FormElement>
 							<f:FormElement label="Safra">
 								<f:fields>
-									<Select id="safra">
+									<Select id="safra" selectedKey="{ path: 'safraData>/IDSAFRA' }">
 										<items>
 											<core:Item text="Safra 2" key="1"/>
 										</items>
@@ -41,7 +23,7 @@
 							</f:FormElement>
 							<f:FormElement label="Grão">
 								<f:fields>
-									<Select id="grao">
+									<Select id="grao" selectedKey="{ path: 'safraData>/IDGRAO' }">
 										<items>
 											<core:Item text="Grão 1" key="1"/>
 										</items>
@@ -50,28 +32,28 @@
 							</f:FormElement>
 							<f:FormElement label="Data Inicio Safra">
 								<f:fields>
-									<DatePicker></DatePicker>
+									<DatePicker id="dataIni" value="{path: 'safraData>/DATAINI', type: 'sap.ui.type.Date'}"></DatePicker>
 								</f:fields>
 							</f:FormElement>
 							<f:FormElement label="Data Final Safra">
 								<f:fields>
-									<DatePicker></DatePicker>
+									<DatePicker id="dataFim" value="{path: 'safraData>/DATAFIM', type: 'sap.ui.type.Date'}"></DatePicker>
 								</f:fields>
 							</f:FormElement>
 							<f:FormElement label="Data Termino Enchimento">
 								<f:fields>
-									<DatePicker>
+									<DatePicker id="dataEnch" value="{path: 'safraData>/DATAENCH', type: 'sap.ui.type.Date'}">
 									</DatePicker>
 								</f:fields>
 							</f:FormElement>
 							<f:FormElement label="Observação">
 								<f:fields>
-									<TextArea />
+									<TextArea id="observacao" value="{path: 'safraData>/OBSERVACAO'}"/>
 								</f:fields>
 							</f:FormElement>
 							<f:FormElement label="">
 								<f:fields>
-									<Button text="Salvar"/>
+									<Button text="Salvar" press="onSalvar"/>
 								</f:fields>
 							</f:FormElement>
 						</f:formElements>

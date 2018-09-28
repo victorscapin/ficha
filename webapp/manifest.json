@@ -108,7 +108,7 @@
 				},
 				{
 					"name": "RouteSiloSafra",
-					"pattern": "RouteSiloSafra",
+					"pattern": "RouteSiloSafra/{siloSelecionado}",
 					"target": ["TargetSiloSafra"]
 				},
 				{

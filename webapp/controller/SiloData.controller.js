@@ -1,6 +1,7 @@
-/*
-	eslint no-console: 0
+/* 
+	eslint no-console: 0 
 */
+
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/core/routing/History",
@@ -9,6 +10,7 @@ sap.ui.define([
 	"use strict";
 	
 	return Controller.extend("Belagricola.ficha.controller.SiloData", {
+		
 		onInit: function () {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("RouteSiloData").attachPatternMatched(this._onObjectMatched, this);
@@ -23,10 +25,11 @@ sap.ui.define([
 				DESCRICAO: ""
 			});
 			var edit = new sap.ui.model.json.JSONModel({isEdit: true});
-			this.getView().setModel(edit, 'edit');
+			this.getView().setModel(edit, "edit");
 			var form = this.byId("form");
 			form.setModel(silo, "silo");
 		},
+		
 		_onObjectMatched: function (event) {
 			var params = event.getParameter("arguments");
 			var form = this.byId("form");
@@ -42,16 +45,16 @@ sap.ui.define([
 				});
 				form.setModel(siloVazio, "silo");
 				var edit = new sap.ui.model.json.JSONModel({isEdit: true});
-				this.getView().setModel(edit, 'edit');
+				this.getView().setModel(edit, "edit");
 				return;
 			} else {
 				var editTrue = new sap.ui.model.json.JSONModel({isEdit: false});
-				this.getView().setModel(editTrue, 'edit');
+				this.getView().setModel(editTrue, "edit");
 				var silo = new sap.ui.model.json.JSONModel(params["?siloPath"]);
 				form.setModel(silo, "silo");
 			}
-
 		},
+		
 		onNavBack: function() {
 			var sPreviousHash = History.getInstance().getPreviousHash();
 			if (sPreviousHash !== undefined) {
@@ -60,6 +63,7 @@ sap.ui.define([
 				this.getOwnerComponent().getRouter().navTo("RouteSilo", null, true);
 			}
 		},
+		
 		onSave: function (event) {
 			var oModel = this.getView().getModel();
 			var data = JSON.parse(this.byId("form").getModel("silo").getJSON());
@@ -72,10 +76,8 @@ sap.ui.define([
 				});
 				return;
 			}
-			/*eslint-disable*/
-			data.IDFILIAL = parseInt(data.IDFILIAL);
-			data.IDTIPOSILO = parseInt(data.IDTIPOSILO);
-			/*eslint-enable*/
+			data.IDFILIAL = parseInt(data.IDFILIAL, 10);
+			data.IDTIPOSILO = parseInt(data.IDTIPOSILO, 10);
 			//data.DATA = new Date();
 			jQuery.ajax({
 				url: "/ServiceOData/FichaInteligente/Silo/insert.xsjs",
@@ -101,7 +103,6 @@ sap.ui.define([
 			});
 			oModel.refresh();
 			this.onNavBack();
-
 		}
 		
 	});
