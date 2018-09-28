@@ -12,13 +12,9 @@ sap.ui.define([
 	return Controller.extend("Belagricola.Ficha.controller.Silo", {
 
 		onInit: function () {
-<<<<<<< HEAD
-			
-=======
 			this.getView().setModel(new sap.ui.model.json.JSONModel({
 				isSelected: false
 			}), "selected");
->>>>>>> refs/heads/master
 		},
 
 		_onPageNavButtonPress: function () {
