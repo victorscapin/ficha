@@ -63,14 +63,14 @@ sap.ui.define([
 
 		onDeletePress: function () {
 			var me = this;
-			
+
 			MessageBox.show("Deseja remover esse item?", {
-        		icon: MessageBox.Icon.WARNING,
-        		title: "REMOVER",
-        		actions: [MessageBox.Action.YES, MessageBox.Action.NO],
-        		onClose : function(sButton) {
-			        if (sButton === MessageBox.Action.YES) {
-			            var aItems = me.getView().byId("grdSilo").getItems();
+				icon: MessageBox.Icon.WARNING,
+				title: "REMOVER",
+				actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+				onClose: function (sButton) {
+					if (sButton === MessageBox.Action.YES) {
+						var aItems = me.getView().byId("grdSilo").getItems();
 						var aSelectedItems = [];
 						for (var i = 0; i < aItems.length; i++) {
 							if (aItems[i].getSelected())
@@ -86,16 +86,20 @@ sap.ui.define([
 							method: "GET",
 							dataType: "text",
 							success: function (res) {
-								MessageToast.show("Item removido!", { duration: 3000 });
+								MessageToast.show("Item removido!", {
+									duration: 3000
+								});
 							},
 							error: function (err) {
-								MessageToast.show("Erro: " + err, { duration: 3000 });
+								MessageToast.show("Erro: " + err, {
+									duration: 3000
+								});
 							}
 						});
 
 						me.getView().getModel().refresh();
-			        }
-        		}
+					}
+				}
 			});
 		},
 
@@ -108,10 +112,11 @@ sap.ui.define([
 				})
 			});
 		},
-		
+
 		onSiloSelect: function (evt) {
+			var podeVincular = evt.getSource().getSelectedItem().getBindingContext().getObject().ANOSFR !== null;
 			this.getView().setModel(new sap.ui.model.json.JSONModel({
-				isSelected: true
+				isSelected: !podeVincular
 			}), "selected");
 		}
 

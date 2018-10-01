@@ -21,7 +21,6 @@ sap.ui.define([
 			}),"safraData");
 		},
 		_onObjectMatched: function(evt) {
-			console.log( JSON.parse(evt.getParameter("arguments").siloSelecionado));
 			this.getView().setModel(new sap.ui.model.json.JSONModel({
 				idSilo :JSON.parse(evt.getParameter("arguments").siloSelecionado).idSilo,
 				idFilial: JSON.parse(evt.getParameter("arguments").siloSelecionado).idFilial
@@ -36,14 +35,20 @@ sap.ui.define([
 			}
 		},
 		 onSalvar: function() {
+			var oModel = this.getView().getModel();
 		 	var siloData = JSON.parse(this.getView().getModel("silo").getJSON());
 		 	var safraData = JSON.parse(this.getView().getModel("safraData").getJSON());
 		 	safraData.IDFILIAL = siloData.idFilial;
 		 	safraData.IDSILO = siloData.idSilo;
+		 	safraData.IDSAFRA = this.getView().byId("safra").getSelectedKey();
 		 	/*eslint-disable*/
-		 	safraData.IDSAFRA = parseInt(this.getView().byId("safra").getSelectedKey());
 		 	safraData.IDGRAO = parseInt(this.getView().byId("grao").getSelectedKey());
 		 	/*eslint-enable*/
+			safraData.DATAINI = this.getView().byId('dataIni').getDateValue();
+			safraData.DATAFIM = this.getView().byId('dataFim').getDateValue();
+			safraData.DATAENCH = this.getView().byId('dataEnch').getDateValue();
+		 	var obs = safraData.OBSERVACAO; 
+			delete safraData.OBSERVACAO;
 		 	if (Object.values(safraData).some(function (s) {
 					return s === undefined || s === "" || s === null;
 				})) {
@@ -52,7 +57,37 @@ sap.ui.define([
 				});
 				return;
 			}
-		 	console.log(safraData);
+			if(safraData.DATAINI.getDate() >= safraData.DATAFIM.getDate()) {
+				MessageToast.show("Data inicial da safra não pode ser maior que a data final", {
+					duration: 3000
+				});
+				return;
+			}
+			safraData.OBSERVACAO = obs;
+		 	jQuery.ajax({
+				url: "/ServiceOData/FichaInteligente/SiloSafra/insert.xsjs",
+				async: false,
+				TYPE: "POST",
+				data: {
+					dataobject: JSON.stringify(safraData)
+				},
+				method: "GET",
+				dataType: "text",
+				success: function (res) {
+					MessageToast.show("Sucesso", {
+						duration: 3000
+					});
+					console.log(res);
+				},
+				error: function (err) {
+					MessageToast.show("Erro", {
+						duration: 3000
+					});
+					console.log(err);
+				}
+			});
+			oModel.refresh();
+			this.onNavBack();
 		 }
 	});
 });
