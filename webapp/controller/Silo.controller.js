@@ -42,7 +42,7 @@ sap.ui.define([
 			this.getOwnerComponent().getRouter().navTo("RouteSiloData");
 		},
 
-		clicaSilo: function (evt) {
+		onSiloPress: function (evt) {
 			var item = evt.getSource();
 			var router = sap.ui.core.UIComponent.getRouterFor(this);
 			var data = item.getBindingContext().getObject();
@@ -51,6 +51,7 @@ sap.ui.define([
 					ID: data.ID,
 					NOME: data.NOME,
 					IDFILIAL: data.IDFILIAL,
+					IDTIPOSILO: data.IDTIPOSILO,
 					NUMEROCABOS: data.NUMEROCABOS,
 					POTENCIA: data.POTENCIA,
 					CAPACIDADE: data.CAPACIDADE,
@@ -81,9 +82,7 @@ sap.ui.define([
 							url: "/ServiceOData/FichaInteligente/Silo/delete.xsjs",
 							async: false,
 							TYPE: "POST",
-							data: {
-								lstIds: dataValue
-							},
+							data: { lstIds: dataValue },
 							method: "GET",
 							dataType: "text",
 							success: function (res) {
@@ -114,7 +113,7 @@ sap.ui.define([
 			});
 		},
 
-		onSeleciona: function (evt) {
+		onSiloSelect: function (evt) {
 			var podeVincular = evt.getSource().getSelectedItem().getBindingContext().getObject().ANOSFR !== null;
 			this.getView().setModel(new sap.ui.model.json.JSONModel({
 				isSelected: !podeVincular

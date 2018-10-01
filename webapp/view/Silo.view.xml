@@ -2,8 +2,8 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="Belagricola.Ficha.controller.Silo" xmlns="sap.m">
 	<Page showHeader="true" title="Gerência de Silos" showFooter="true" showNavButton="true" navButtonPress="_onPageNavButtonPress">
 		<content>
-			<Table id="grdSilo" mode="SingleSelectLeft" selectionChange="onSeleciona"
-				items="{ path : '/SILOSAFRADATA', sorter: { path: 'NOME' }, filters : [ { path : 'REMOVIDO', operator : 'EQ', value1 : 0 } ] }">
+			<Table id="grdSilo" mode="SingleSelectLeft" selectionChange="onSiloSelect"
+			items="{ path : '/SILOSAFRADATA', sorter: { path: 'NOME' }, filters : [ { path : 'REMOVIDO', operator : 'EQ', value1 : 0 } ] }">
 				<headerToolbar>
 					<Toolbar>
 						<Title text="Silos"/>
@@ -29,7 +29,7 @@
 					</Column>
 				</columns>
 				<items>
-					<ColumnListItem type="Navigation" press="clicaSilo">
+					<ColumnListItem type="Navigation" press="onSiloPress">
 						<cells>
 							<ObjectIdentifier title="{NOME}"/>
 							<ObjectIdentifier title="{CAPACIDADE}"/>

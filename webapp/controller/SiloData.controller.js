@@ -1,5 +1,6 @@
 /* 
-	eslint no-console: 0 
+	eslint no-console: 0,
+	radix: ["error", "as-needed"]
 */
 
 sap.ui.define([
@@ -16,17 +17,16 @@ sap.ui.define([
 			oRouter.getRoute("RouteSiloData").attachPatternMatched(this._onObjectMatched, this);
 			sap.ui.getCore().getMessageManager().registerObject(this.getView(), true);
 			var silo = new sap.ui.model.json.JSONModel({
-				ID: "",
+				ID: 0,
 				NOME: "",
-				IDTIPOSILO: "",
-				IDFILIAL: "",
-				CAPACIDADE: "",
-				POTENCIA: "",
-				NUMEROCABOS: "",
+				IDTIPOSILO: 0,
+				IDFILIAL: 0,
+				CAPACIDADE: 0,
+				POTENCIA: 0,
+				NUMEROCABOS: 0,
 				DESCRICAO: ""
 			});
-			var edit = new sap.ui.model.json.JSONModel({isEdit: true});
-			this.getView().setModel(edit, "edit");
+			
 			var form = this.byId("form");
 			form.setModel(silo, "silo");
 		},
@@ -46,12 +46,7 @@ sap.ui.define([
 					DESCRICAO: ""
 				});
 				form.setModel(siloVazio, "silo");
-				var edit = new sap.ui.model.json.JSONModel({isEdit: true});
-				this.getView().setModel(edit, "edit");
-				return;
 			} else {
-				var editTrue = new sap.ui.model.json.JSONModel({isEdit: false});
-				this.getView().setModel(editTrue, "edit");
 				var silo = new sap.ui.model.json.JSONModel(params["?siloPath"]);
 				form.setModel(silo, "silo");
 			}
@@ -67,39 +62,32 @@ sap.ui.define([
 		},
 		
 		onSave: function (event) {
-			var oModel = this.getView().getModel();
 			var data = JSON.parse(this.byId("form").getModel("silo").getJSON());
-			
-			if (Object.values(data).some(function (s) {
-					return s === undefined || s === "" || s === null;
-				})) {
-				MessageToast.show("Preencha todos os campos", {
-					duration: 3000
-				});
-				return;
-			}
-			data.IDFILIAL = parseInt(this.getView().byId("filial").getSelectedKey(), 10);
-			data.IDTIPOSILO = parseInt(data.IDTIPOSILO, 10);
+			console.log(data);
+			if (!data.NOME || !data.IDFILIAL || !data.IDTIPOSILO || !data.CAPACIDADE || !data.POTENCIA || !data.NUMEROCABOS) {
+	        	MessageToast.show("Preencha todos os campos obrigatórios.", { duration: 3000 });
+	        	return;
+	        }
+			data.IDFILIAL = parseInt(this.getView().byId("filial").getSelectedKey());
+			data.IDTIPOSILO = parseInt(data.IDTIPOSILO);
 
 			jQuery.ajax({
-				url: "/ServiceOData/FichaInteligente/Silo/insert.xsjs",
+				url: data.ID ? "/ServiceOData/FichaInteligente/Silo/update.xsjs" : "/ServiceOData/FichaInteligente/Silo/insert.xsjs",
 				async: false,
 				TYPE: "POST",
-				data: {
-					dataobject: JSON.stringify(data)
-				},
+				data: { dataobject: JSON.stringify(data) },
 				method: "GET",
 				dataType: "text",
 				success: function (res) {
-					MessageToast.show("Sucesso", { duration: 3000 });
+					MessageToast.show("Salvo com sucesso", { duration: 3000 });
 					console.log(res);
 				},
 				error: function (err) {
-					MessageToast.show("Erro", { duration: 3000 });
+					MessageToast.show("Erro: " + err.message, { duration: 3000 });
 					console.log(err);
 				}
 			});
-			oModel.refresh();
+			this.getView().getModel().refresh();
 			this.onNavBack();
 		}
 		
