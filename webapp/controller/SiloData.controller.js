@@ -63,11 +63,11 @@ sap.ui.define([
 		
 		onSave: function (event) {
 			var data = JSON.parse(this.byId("form").getModel("silo").getJSON());
-			console.log(data);
 			if (!data.NOME || !data.IDFILIAL || !data.IDTIPOSILO || !data.CAPACIDADE || !data.POTENCIA || !data.NUMEROCABOS) {
 	        	MessageToast.show("Preencha todos os campos obrigatórios.", { duration: 3000 });
 	        	return;
 	        }
+	        data.ID = parseInt(data.ID);
 			data.IDFILIAL = parseInt(this.getView().byId("filial").getSelectedKey());
 			data.IDTIPOSILO = parseInt(data.IDTIPOSILO);
 
