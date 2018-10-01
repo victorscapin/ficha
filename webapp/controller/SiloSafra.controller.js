@@ -44,6 +44,9 @@ sap.ui.define([
 		 	/*eslint-disable*/
 		 	safraData.IDGRAO = parseInt(this.getView().byId("grao").getSelectedKey());
 		 	/*eslint-enable*/
+			safraData.DATAINI = this.getView().byId('dataIni').getDateValue();
+			safraData.DATAFIM = this.getView().byId('dataFim').getDateValue();
+			safraData.DATAENCH = this.getView().byId('dataEnch').getDateValue();
 		 	var obs = safraData.OBSERVACAO; 
 			delete safraData.OBSERVACAO;
 		 	if (Object.values(safraData).some(function (s) {
@@ -54,10 +57,13 @@ sap.ui.define([
 				});
 				return;
 			}
+			if(safraData.DATAINI.getDate() >= safraData.DATAFIM.getDate()) {
+				MessageToast.show("Data inicial da safra não pode ser maior que a data final", {
+					duration: 3000
+				});
+				return;
+			}
 			safraData.OBSERVACAO = obs;
-			safraData.DATAINI = this.getView().byId('dataIni').getDateValue();
-			safraData.DATAFIM = this.getView().byId('dataFim').getDateValue();
-			safraData.DATAENCH = this.getView().byId('dataEnch').getDateValue();
 		 	jQuery.ajax({
 				url: "/ServiceOData/FichaInteligente/SiloSafra/insert.xsjs",
 				async: false,
