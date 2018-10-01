@@ -13,27 +13,9 @@ sap.ui.define([
 	return Controller.extend("Belagricola.Ficha.controller.Silo", {
 
 		onInit: function () {
-			var ids = [];
-			var context = this;
-			new sap.ui.model.odata.ODataModel("/ServiceOData/FichaInteligente/ODataService.xsodata/").read('/SILOSAFRADATA', null, null, true,
-				function (oData, response) {
-					if (response.statusCode !== 200)
-						return;
-					ids = oData.results.map(function (m) {
-						return m.IDSILO;
-					});
-					context.getView().setModel(ids, "silosVinculados");
-					context.getView().setModel(new sap.ui.model.json.JSONModel({
-						isSelected: false,
-						isVinc: function () {
-							return "oi";
-							// console.log(id);
-							// return context.getView().getModel("silosVinculados").some(function (s) {
-							// 	return id === s;
-							// });
-						}
-					}), "selected");
-				});
+			this.getView().setModel(new sap.ui.model.json.JSONModel({
+				isSelected: false
+			}), "selected");
 		},
 
 		_onPageNavButtonPress: function () {
@@ -80,14 +62,14 @@ sap.ui.define([
 
 		onDeletePress: function () {
 			var me = this;
-			
+
 			MessageBox.show("Deseja remover esse item?", {
-        		icon: MessageBox.Icon.WARNING,
-        		title: "REMOVER",
-        		actions: [MessageBox.Action.YES, MessageBox.Action.NO],
-        		onClose : function(sButton) {
-			        if (sButton === MessageBox.Action.YES) {
-			            var aItems = me.getView().byId("grdSilo").getItems();
+				icon: MessageBox.Icon.WARNING,
+				title: "REMOVER",
+				actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+				onClose: function (sButton) {
+					if (sButton === MessageBox.Action.YES) {
+						var aItems = me.getView().byId("grdSilo").getItems();
 						var aSelectedItems = [];
 						for (var i = 0; i < aItems.length; i++) {
 							if (aItems[i].getSelected())
@@ -105,16 +87,20 @@ sap.ui.define([
 							method: "GET",
 							dataType: "text",
 							success: function (res) {
-								MessageToast.show("Item removido!", { duration: 3000 });
+								MessageToast.show("Item removido!", {
+									duration: 3000
+								});
 							},
 							error: function (err) {
-								MessageToast.show("Erro: " + err, { duration: 3000 });
+								MessageToast.show("Erro: " + err, {
+									duration: 3000
+								});
 							}
 						});
 
 						me.getView().getModel().refresh();
-			        }
-        		}
+					}
+				}
 			});
 		},
 
@@ -127,14 +113,11 @@ sap.ui.define([
 				})
 			});
 		},
-		
-		onSeleciona: function (evt) {
 
-			var podeVincular = this.getView().getModel("silosVinculados").some(function (s) {
-				return evt.getSource().getSelectedItem().getBindingContext().getObject().ID === s;
-			});
+		onSeleciona: function (evt) {
+			var podeVincular = evt.getSource().getSelectedItem().getBindingContext().getObject().ANOSFR !== null;
 			this.getView().setModel(new sap.ui.model.json.JSONModel({
-				isSelected: podeVincular
+				isSelected: !podeVincular
 			}), "selected");
 		}
 
