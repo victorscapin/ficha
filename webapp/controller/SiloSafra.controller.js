@@ -35,12 +35,13 @@ sap.ui.define([
 			}
 		},
 		 onSalvar: function() {
+			var oModel = this.getView().getModel();
 		 	var siloData = JSON.parse(this.getView().getModel("silo").getJSON());
 		 	var safraData = JSON.parse(this.getView().getModel("safraData").getJSON());
 		 	safraData.IDFILIAL = siloData.idFilial;
 		 	safraData.IDSILO = siloData.idSilo;
+		 	safraData.IDSAFRA = this.getView().byId("safra").getSelectedKey();
 		 	/*eslint-disable*/
-		 	safraData.IDSAFRA = parseInt(this.getView().byId("safra").getSelectedKey());
 		 	safraData.IDGRAO = parseInt(this.getView().byId("grao").getSelectedKey());
 		 	/*eslint-enable*/
 		 	var obs = safraData.OBSERVACAO; 
@@ -79,6 +80,7 @@ sap.ui.define([
 					console.log(err);
 				}
 			});
+			oModel.refresh();
 			this.onNavBack();
 		 }
 	});
