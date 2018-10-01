@@ -11,9 +11,61 @@
 			</f:layout>
 			<f:formContainers>
 				<f:FormContainer>
-					<f:FormElement label="Nome da Areação">
+					<f:FormElement label="Data Sistema">
 						<f:fields>
-							<Input value="{ path: 'areacao>/NOME', type: 'sap.ui.model.type.String', constraints: { maxLength: 50}}" id="nome" required="true"
+							<DatePicker id="dataCadastro" value="{ path: 'areacao>/DATACADASTRO', type: 'sap.ui.model.type.Date'}" required="true" editable="false"></DatePicker>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Responsável">
+						<f:fields>
+							<DatePicker id="usuario" value="{ path: 'areacao>/IDUSUARIO', type: 'sap.ui.model.type.String'}" required="true" editable="false"></DatePicker>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Filial">
+						<f:fields required="true">
+							<Select id="filial" selectedKey="{ path: 'areacao>/IDFILIAL'}" items="{/FILIALDATA}" enabled="{edit>/isEdit}">
+								<items>
+									<core:Item text="{NOME}" key="{ID}"/>
+								</items>
+							</Select>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Silos">
+						<f:fields required="true">
+							<Select id="silos" selectedKey="{ path: 'areacao>/IDSILO'}" items="{/SILODATA}" enabled="{edit>/isEdit}">
+								<items>
+									<core:Item text="{NOME}" key="{ID}"/>
+								</items>
+							</Select>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Data Operação">
+						<f:fields>
+							<DatePicker id="dataOperacao" value="{ path: 'areacao>/DATAOPERACAO', type: 'sap.ui.model.type.Date'}" required="true"
+								editable="{edit>/isEdit}"></DatePicker>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="N° de Hr./Dia">
+						<f:fields>
+							<Input value="{ path: 'areacao>/HRDIA', type: 'sap.ui.model.type.Integer', constraints: { maxLength: 50}}" id="hrDia" required="true"
+								editable="{edit>/isEdit}"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Temperatura Ambiente (C)">
+						<f:fields>
+							<Input value="{ path: 'areacao>/TEMPERATURAAMBIENTE', type: 'sap.ui.model.type.Float', constraints: { maxLength: 50}}"
+								id="temperaturaAmbiente" required="true" editable="{edit>/isEdit}"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Umidade Relatíva (%)">
+						<f:fields>
+							<Input value="{ path: 'areacao>/UMIDADERELATIVA', type: 'sap.ui.model.type.Float', constraints: { maxLength: 50}}" id="umidadeRelativa"
+								required="true" editable="{edit>/isEdit}"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Observação">
+						<f:fields>
+							<TextArea value="{ path: 'silo>/OBSERVACAO', type: 'sap.ui.model.type.String', constraints: { maxLength: 200 } }" id="observacao"
 								editable="{edit>/isEdit}"/>
 						</f:fields>
 					</f:FormElement>
