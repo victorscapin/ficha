@@ -28,28 +28,38 @@ sap.ui.define([
 		},
 		
 		onSearch: function(event) {
-			var filtro = [];
+			/*var filtro = [];
 			var param = event.getParameter("query");
 			if(param) {
 				filtro.push(new Filter("NOME", FilterOperator.Contains, param));
 			}
 			var table = this.byId("grdAreacao");
 			var bind = table.getBinding("items");
-			bind.filter(filtro);
+			bind.filter(filtro);*/
 		},
 		
 		onNewPress: function() {
 			this.getOwnerComponent().getRouter().navTo("RouteAreacaoData");
 		},
 		clicaAreacao: function(evt) {
-			/*var item = evt.getSource(); 
+			var item = evt.getSource(); 
 			var router = sap.ui.core.UIComponent.getRouterFor(this);
 			var data = item.getBindingContext().getObject();
 			router.navTo("RouteAreacaoData", {
 				areacaoPath: {
-					NOME: data.NOME
+					ID: data.ID,
+					IDUSUARIO: data.IDUSUARIO,
+					IDFILIAL: data.IDFILIAL,
+					IDSILO: data.IDSILO,
+					DATACADASTRO: data.DATACADASTRO,
+					DATAOPERACAO: data.DATAOPERACAO,
+					HRDIA: data.HRDIA,
+					TEMPERATURAAMBIENTE: data.TEMPERATURAAMBIENTE,
+					UMIDADERELATIVA: data.UMIDADERELATIVA,
+					OBSERVACAO: data.OBSERVACAO,
+					REMOVIDO: data.REMOVIDO
 				}
-			});*/
+			});
 		},
 		onDeletePress: function() {
 	    	var aItems = this.getView().byId("grdAreacao").getItems();

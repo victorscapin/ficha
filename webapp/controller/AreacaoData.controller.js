@@ -48,7 +48,7 @@ sap.ui.define([
 		onSave: function (event) {
 			var oModel = this.getView().getModel();
 			var data = JSON.parse(this.byId("form").getModel("areacao").getJSON());
-			//combobox data.IDFILIAL = this.getView().byId("filial").getSelectedKey();
+			data.IDFILIAL = this.getView().byId("filial").getSelectedKey();
 			if (Object.values(data).some(function (s) {
 					return s === undefined || s === "" || s === null;
 				})) {
@@ -58,10 +58,10 @@ sap.ui.define([
 				return;
 			}
 			/*eslint-disable*/
-			//combobox data.IDFILIAL = parseInt(data.IDFILIAL);
-			//combobox data.IDTIPOSILO = parseInt(data.IDTIPOSILO);
+			data.IDFILIAL = parseInt(data.IDFILIAL);
+			data.IDSILO = parseInt(data.IDSILO);
 			/*eslint-enable*/
-			//data.DATA = new Date();
+			data.DATA = new Date();
 			jQuery.ajax({
 				url: "/ServiceOData/FichaInteligente/Areacao/insert.xsjs",
 				async: false,
