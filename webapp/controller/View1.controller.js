@@ -15,6 +15,9 @@ sap.ui.define([
 		
 		onToRouteAreacao: function () {
 			this.getOwnerComponent().getRouter().navTo("RouteAreacao");
+		},
+		onToRouteSondagem: function() {
+			this.getOwnerComponent().getRouter().navTo("RouteSondagem");
 		}
 	});
 }, /* bExport= */ true);

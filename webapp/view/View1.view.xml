@@ -14,6 +14,11 @@
 							<ImageContent src="sap-icon://offsite-work"/>
 						</TileContent>
 					</GenericTile>
+					<GenericTile header="Sondagens" subheader="Gerência de sondagens" frameType="OneByOne" class="sapUiResponsiveMargin" press="onToRouteSondagem">
+						<TileContent footer="" unit="">
+							<ImageContent src="sap-icon://endoscopy"/>
+						</TileContent>
+					</GenericTile>
 				</content>
 			</Page>
 		</pages>
