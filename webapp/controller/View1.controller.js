@@ -19,5 +19,6 @@ sap.ui.define([
 		onToRouteSondagem: function() {
 			this.getOwnerComponent().getRouter().navTo("RouteSondagem");
 		}
+		
 	});
 }, /* bExport= */ true);

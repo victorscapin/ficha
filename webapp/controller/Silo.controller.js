@@ -86,14 +86,10 @@ sap.ui.define([
 							method: "GET",
 							dataType: "text",
 							success: function (res) {
-								MessageToast.show("Item removido!", {
-									duration: 3000
-								});
+								MessageToast.show("Item removido!", { duration: 3000 });
 							},
 							error: function (err) {
-								MessageToast.show("Erro: " + err, {
-									duration: 3000
-								});
+								MessageToast.show("Erro: " + err, { duration: 3000 });
 							}
 						});
 
@@ -118,6 +114,10 @@ sap.ui.define([
 			this.getView().setModel(new sap.ui.model.json.JSONModel({
 				isSelected: !podeVincular
 			}), "selected");
+		},
+		
+		onPressBreadcrumb: function(event) {
+			this.getOwnerComponent().getRouter().navTo(event);
 		}
 
 	});

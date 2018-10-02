@@ -89,6 +89,10 @@ sap.ui.define([
 			});
 			this.getView().getModel().refresh();
 			this.onNavBack();
+		},
+		
+		onPressBreadcrumb: function(event) {
+			this.getOwnerComponent().getRouter().navTo(event);
 		}
 		
 	});
