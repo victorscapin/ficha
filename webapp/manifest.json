@@ -120,6 +120,16 @@
 					"name": "RouteAreacaoData",
 					"pattern": "RouteAreacaoData",
 					"target": ["TargetAreacaoData"]
+				},
+				{
+					"name": "RouteSondagem",
+					"pattern": "RouteSondagem",
+					"target": ["TargetSondagem"]
+				},
+				{
+					"name": "RouteSondagemData",
+					"pattern": "RouteSondagemData",
+					"target": ["TargetSondagemData"]
 				}
 			],
 			"targets": {
@@ -158,6 +168,18 @@
 					"transition": "slide",
 					"clearControlAggregation": false,
 					"viewName": "AreacaoData"
+				},
+				"TargetSondagem": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "Sondagem"
+				},
+				"TargetSondagemData": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregtion": false,
+					"viewName": "SondagemData"
 				}
 			}
 		}

@@ -2,18 +2,29 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/core/routing/History",
 	"sap/m/MessageToast"
-], function(Controller, History, MessageToast) {
+], function (Controller, History, MessageToast) {
 	"use strict";
-	
+
 	return Controller.extend("Belagricola.ficha.controller.AreacaoData", {
 		onInit: function () {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("RouteAreacaoData").attachPatternMatched(this._onObjectMatched, this);
 			sap.ui.getCore().getMessageManager().registerObject(this.getView(), true);
 			var areacao = new sap.ui.model.json.JSONModel({
-				NOME: ""
+				ID: 0,
+				IDUSUARIO: 0,
+				IDFILIAL: 0,
+				IDSILO: 0,
+				DATACADASTRO: "",
+				DATAOPERACAO: "",
+				HRDIA: 0,
+				TEMPERATURAAMBIENTE: 0,
+				UMIDADERELATIVA: 0,
+				OBSERVACAO: ""
 			});
-			var edit = new sap.ui.model.json.JSONModel({isEdit: true});
+			var edit = new sap.ui.model.json.JSONModel({
+				isEdit: true
+			});
 			this.getView().setModel(edit, 'edit');
 			var form = this.byId("form");
 			form.setModel(areacao, "areacao");
@@ -23,21 +34,34 @@ sap.ui.define([
 			var form = this.byId("form");
 			if (!params["?areacaoPath"]) {
 				var areacaoVazio = new sap.ui.model.json.JSONModel({
-					NOME: ""
+					ID: "",
+					IDUSUARIO: "",
+					IDFILIAL: "",
+					IDSILO: "",
+					DATACADASTRO: "",
+					DATAOPERACAO: "",
+					HRDIA: "",
+					TEMPERATURAAMBIENTE: "",
+					UMIDADERELATIVA: "",
+					OBSERVACAO: ""
 				});
 				form.setModel(areacaoVazio, "areacao");
-				var edit = new sap.ui.model.json.JSONModel({isEdit: true});
+				var edit = new sap.ui.model.json.JSONModel({
+					isEdit: true
+				});
 				this.getView().setModel(edit, 'edit');
 				return;
 			} else {
-				var editTrue = new sap.ui.model.json.JSONModel({isEdit: false});
+				var editTrue = new sap.ui.model.json.JSONModel({
+					isEdit: false
+				});
 				this.getView().setModel(editTrue, 'edit');
 				var areacao = new sap.ui.model.json.JSONModel(params["?areacaoPath"]);
 				form.setModel(areacao, "areacao");
 			}
 
 		},
-		onNavBack: function() {
+		onNavBack: function () {
 			var sPreviousHash = History.getInstance().getPreviousHash();
 			if (sPreviousHash !== undefined) {
 				window.history.go(-1);
@@ -46,20 +70,14 @@ sap.ui.define([
 			}
 		},
 		onSave: function (event) {
-			var oModel = this.getView().getModel();
 			var data = JSON.parse(this.byId("form").getModel("areacao").getJSON());
-			data.IDFILIAL = this.getView().byId("filial").getSelectedKey();
-			if (Object.values(data).some(function (s) {
-					return s === undefined || s === "" || s === null;
-				})) {
-				MessageToast.show("Preencha todos os campos", {
-					duration: 3000
-				});
-				return;
-			}
+			if (!data.DATAOPERACAO || !data.HRDIA || !data.TEMPERATURAAMBIENTE || !data.UMIDADERELATIVA) {
+	        	MessageToast.show("Preencha todos os campos obrigatórios.", { duration: 3000 });
+	        	return;
+	        }
 			/*eslint-disable*/
-			data.IDFILIAL = parseInt(data.IDFILIAL);
-			data.IDSILO = parseInt(data.IDSILO);
+			data.IDFILIAL = parseInt(this.getView().byId("filial").getSelectedKey());
+			data.IDUSUARIO = parseInt(data.IDUSUARIO);
 			/*eslint-enable*/
 			data.DATA = new Date();
 			jQuery.ajax({
@@ -75,16 +93,14 @@ sap.ui.define([
 					MessageToast.show("Sucesso", {
 						duration: 3000
 					});
-					//console.log(res);
 				},
 				error: function (err) {
 					MessageToast.show("Erro", {
 						duration: 3000
 					});
-					//console.log(err);
 				}
 			});
-			oModel.refresh();
+			this.getView().getModel().refresh();
 			this.onNavBack();
 		}
 	});
