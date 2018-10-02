@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/core/routing/History",
@@ -10,12 +11,7 @@ sap.ui.define([
 	return Controller.extend("Belagricola.Ficha.controller.Areacao", {
 
 		onInit: function () {
-			/*var filtro = [];
-			filtro.push(new Filter("REMOVIDO", FilterOperator.Equals, 0));
 			
-			var table = this.byId("grdAreacao");
-			var bind = table.getBinding("items");
-			bind.filter(filtro);*/
 		},
 		
 		_onPageNavButtonPress: function () {
@@ -28,21 +24,15 @@ sap.ui.define([
 		},
 		
 		onSearch: function(event) {
-			/*var filtro = [];
-			var param = event.getParameter("query");
-			if(param) {
-				filtro.push(new Filter("NOME", FilterOperator.Contains, param));
-			}
-			var table = this.byId("grdAreacao");
-			var bind = table.getBinding("items");
-			bind.filter(filtro);*/
+			
 		},
 		
 		onNewPress: function() {
 			this.getOwnerComponent().getRouter().navTo("RouteAreacaoData");
 		},
+		
 		clicaAreacao: function(evt) {
-			var item = evt.getSource(); 
+			var item = evt.getSource();
 			var router = sap.ui.core.UIComponent.getRouterFor(this);
 			var data = item.getBindingContext().getObject();
 			router.navTo("RouteAreacaoData", {

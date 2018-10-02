@@ -1,3 +1,4 @@
+
 <mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
 	controllerName="Belagricola.Ficha.controller.AreacaoData">
 	<Page title="Gerência de Areações" showNavButton="true" navButtonPress="onNavBack">
@@ -13,12 +14,12 @@
 				<f:FormContainer>
 					<f:FormElement label="Data Sistema">
 						<f:fields>
-							<DatePicker id="dataCadastro" value="{ path: 'areacao>/DATACADASTRO', type: 'sap.ui.model.type.Date'}" required="true" editable="false"></DatePicker>
+							<DatePicker id="dataCadastro" dateValue="{areacao>/DATACADASTRO}" required="true" editable="false"></DatePicker>
 						</f:fields>
 					</f:FormElement>
 					<f:FormElement label="Responsável">
 						<f:fields>
-							<DatePicker id="usuario" value="{ path: 'areacao>/IDUSUARIO', type: 'sap.ui.model.type.String'}" required="true" editable="false"></DatePicker>
+							<Input id="usuario" value="{ path: 'areacao>/IDUSUARIO', type: 'sap.ui.model.type.String'}" required="true" editable="false"/>
 						</f:fields>
 					</f:FormElement>
 					<f:FormElement label="Filial">
@@ -41,7 +42,7 @@
 					</f:FormElement>
 					<f:FormElement label="Data Operação">
 						<f:fields>
-							<DatePicker id="dataOperacao" value="{ path: 'areacao>/DATAOPERACAO', type: 'sap.ui.model.type.Date'}" required="true"
+							<DatePicker id="dataOperacao" dateValue="{areacao>/DATAOPERACAO}" required="true"
 								editable="{edit>/isEdit}"></DatePicker>
 						</f:fields>
 					</f:FormElement>
@@ -65,7 +66,7 @@
 					</f:FormElement>
 					<f:FormElement label="Observação">
 						<f:fields>
-							<TextArea value="{ path: 'silo>/OBSERVACAO', type: 'sap.ui.model.type.String', constraints: { maxLength: 200 } }" id="observacao"
+							<TextArea value="{ path: 'areacao>/OBSERVACAO', type: 'sap.ui.model.type.String', constraints: { maxLength: 200 } }" id="observacao"
 								editable="{edit>/isEdit}"/>
 						</f:fields>
 					</f:FormElement>

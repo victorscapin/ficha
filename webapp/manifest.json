@@ -118,7 +118,7 @@
 				},
 				{
 					"name": "RouteAreacaoData",
-					"pattern": "RouteAreacaoData",
+					"pattern": "RouteAreacaoData/:?areacaoPath:",
 					"target": ["TargetAreacaoData"]
 				},
 				{

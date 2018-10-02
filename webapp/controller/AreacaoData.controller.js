@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/core/routing/History",
@@ -12,20 +13,17 @@ sap.ui.define([
 			sap.ui.getCore().getMessageManager().registerObject(this.getView(), true);
 			var areacao = new sap.ui.model.json.JSONModel({
 				ID: 0,
-				IDUSUARIO: 0,
+				IDUSUARIO: 1,
 				IDFILIAL: 0,
 				IDSILO: 0,
-				DATACADASTRO: "",
-				DATAOPERACAO: "",
+				DATACADASTRO: new Date(),
+				DATAOPERACAO: new Date(),
 				HRDIA: 0,
 				TEMPERATURAAMBIENTE: 0,
 				UMIDADERELATIVA: 0,
 				OBSERVACAO: ""
 			});
-			var edit = new sap.ui.model.json.JSONModel({
-				isEdit: true
-			});
-			this.getView().setModel(edit, 'edit');
+			
 			var form = this.byId("form");
 			form.setModel(areacao, "areacao");
 		},
@@ -38,28 +36,20 @@ sap.ui.define([
 					IDUSUARIO: "",
 					IDFILIAL: "",
 					IDSILO: "",
-					DATACADASTRO: "",
-					DATAOPERACAO: "",
+					DATACADASTRO: new Date(),
+					DATAOPERACAO: new Date(),
 					HRDIA: "",
 					TEMPERATURAAMBIENTE: "",
 					UMIDADERELATIVA: "",
 					OBSERVACAO: ""
 				});
 				form.setModel(areacaoVazio, "areacao");
-				var edit = new sap.ui.model.json.JSONModel({
-					isEdit: true
-				});
-				this.getView().setModel(edit, 'edit');
-				return;
 			} else {
-				var editTrue = new sap.ui.model.json.JSONModel({
-					isEdit: false
-				});
-				this.getView().setModel(editTrue, 'edit');
+				params["?areacaoPath"].DATAOPERACAO = new Date(params["?areacaoPath"].DATAOPERACAO);
+				params["?areacaoPath"].DATACADASTRO = new Date(params["?areacaoPath"].DATACADASTRO);
 				var areacao = new sap.ui.model.json.JSONModel(params["?areacaoPath"]);
 				form.setModel(areacao, "areacao");
 			}
-
 		},
 		onNavBack: function () {
 			var sPreviousHash = History.getInstance().getPreviousHash();
@@ -74,30 +64,24 @@ sap.ui.define([
 			if (!data.DATAOPERACAO || !data.HRDIA || !data.TEMPERATURAAMBIENTE || !data.UMIDADERELATIVA) {
 	        	MessageToast.show("Preencha todos os campos obrigatórios.", { duration: 3000 });
 	        	return;
-	        }
-			/*eslint-disable*/
+	        }/*eslint-disable*/
+			data.ID = parseInt(data.ID);
 			data.IDFILIAL = parseInt(this.getView().byId("filial").getSelectedKey());
-			data.IDUSUARIO = parseInt(data.IDUSUARIO);
-			/*eslint-enable*/
-			data.DATA = new Date();
+			data.IDSILO = parseInt(data.IDSILO);
+			console.log(data.ID);
 			jQuery.ajax({
-				url: "/ServiceOData/FichaInteligente/Areacao/insert.xsjs",
+				url: data.ID !== NaN ? "/ServiceOData/FichaInteligente/Areacao/update.xsjs" : "/ServiceOData/FichaInteligente/Areacao/insert.xsjs",
 				async: false,
 				TYPE: "POST",
-				data: {
-					dataobject: JSON.stringify(data)
-				},
+				data: { dataobject: JSON.stringify(data) },
 				method: "GET",
 				dataType: "text",
 				success: function (res) {
-					MessageToast.show("Sucesso", {
-						duration: 3000
-					});
+					MessageToast.show("Sucesso", { duration: 3000 });
+					console.log(res)
 				},
 				error: function (err) {
-					MessageToast.show("Erro", {
-						duration: 3000
-					});
+					MessageToast.show("Erro", { duration: 3000 });
 				}
 			});
 			this.getView().getModel().refresh();
