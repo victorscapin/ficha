@@ -1,10 +1,11 @@
 <mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
 	controllerName="Belagricola.Ficha.controller.SiloData">
 	<Page title="Gerência de Silos" showNavButton="true" navButtonPress="onNavBack">
+		<Breadcrumbs currentLocationText="Dados do Silo">
+			<Link press="onPressBreadcrumb('RouteView1')" text="Ficha Inteligente"></Link>
+			<Link press="onPressBreadcrumb('RouteSilo')" text="Silos"></Link>
+		</Breadcrumbs>
 		<f:Form id="form" editable="true">
-			<f:title>
-				<core:Title text="Silo"/>
-			</f:title>
 			<f:layout>
 				<f:ResponsiveGridLayout labelSpanXL="6" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false"
 										emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>

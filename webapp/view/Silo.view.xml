@@ -6,7 +6,9 @@
 			items="{ path : '/SILOSAFRADATA', sorter: { path: 'NOME' }, filters : [ { path : 'REMOVIDO', operator : 'EQ', value1 : 0 } ] }">
 				<headerToolbar>
 					<Toolbar>
-						<Title text="Silos"/>
+						<Breadcrumbs currentLocationText="Silos">
+							<Link press="onPressBreadcrumb('RouteView1')" text="Ficha Inteligente"></Link>
+						</Breadcrumbs>
 						<ToolbarSpacer/>
 						<Button text="Novo" press="onNewPress"/>
 						<Button text="Remover" press="onDeletePress" enabled="{selected>/isSelected}"/>
