@@ -13,16 +13,6 @@
 			</f:layout>
 			<f:formContainers>
 				<f:FormContainer>
-					<f:FormElement label="Data Sistema">
-						<f:fields>
-							<DatePicker id="dataCadastro" dateValue="{areacao>/DATACADASTRO}" required="true" editable="false"></DatePicker>
-						</f:fields>
-					</f:FormElement>
-					<f:FormElement label="Responsável">
-						<f:fields>
-							<Input id="usuario" value="{ path: 'areacao>/IDUSUARIO', type: 'sap.ui.model.type.String'}" required="true" editable="false"/>
-						</f:fields>
-					</f:FormElement>
 					<f:FormElement label="Filial">
 						<f:fields required="true">
 							<Select id="filial" selectedKey="{ path: 'areacao>/IDFILIAL'}" items="{/FILIALDATA}" enabled="{edit>/isEdit}">
