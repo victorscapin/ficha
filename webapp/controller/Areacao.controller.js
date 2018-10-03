@@ -4,14 +4,17 @@ sap.ui.define([
 	"sap/ui/core/routing/History",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
-	"sap/m/MessageToast"
-], function (Controller, History, Filter, FilterOperator, MessageToast) {
+	"sap/m/MessageToast",
+	"sap/m/MessageBox"
+], function (Controller, History, Filter, FilterOperator, MessageToast, MessageBox) {
 	"use strict";
 
 	return Controller.extend("Belagricola.Ficha.controller.Areacao", {
 
 		onInit: function () {
-			
+			this.getView().setModel(new sap.ui.model.json.JSONModel({
+				isSelected: false
+			}), "selected");
 		},
 		
 		_onPageNavButtonPress: function () {
@@ -51,31 +54,53 @@ sap.ui.define([
 				}
 			});
 		},
-		onDeletePress: function() {
-	    	var aItems = this.getView().byId("grdAreacao").getItems();
-		    var aSelectedItems = [];
-		    for (var i = 0; i < aItems.length; i++) {
-				if (aItems[i].getSelected())
-		            aSelectedItems.push(aItems[i].getBindingContext().getObject().ID);
-		    }
-		    
-        	var dataValue = JSON.stringify(aSelectedItems.toString());
-        	jQuery.ajax({
-    			url: "/ServiceOData/FichaInteligente/Areacao/delete.xsjs",
-            	async: false,
-            	TYPE: "POST" ,
-            	data: { lstIds: dataValue },
-            	method: "GET",
-            	dataType: "text",
-            	success: function(res) {
-        			MessageToast.show("Success", {duration: 3000});
-            	},
-            	error: function(err) {
-            		MessageToast.show("Erro", {duration: 3000});
-            	}
-        	});
-        	this.getView().getModel().refresh();
-		}
+		onDeletePress: function () {
+			var me = this;
 
+			MessageBox.show("Deseja remover esse item?", {
+				icon: MessageBox.Icon.WARNING,
+				title: "REMOVER",
+				actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+				onClose: function (sButton) {
+					if (sButton === MessageBox.Action.YES) {
+						var aItems = me.getView().byId("grdAreacao").getItems();
+						var aSelectedItems = [];
+						for (var i = 0; i < aItems.length; i++) {
+							if (aItems[i].getSelected())
+								aSelectedItems.push(aItems[i].getBindingContext().getObject().ID);
+						}
+
+						var dataValue = JSON.stringify(aSelectedItems.toString());
+						jQuery.ajax({
+							url: "/ServiceOData/FichaInteligente/Areacao/delete.xsjs",
+							async: false,
+							TYPE: "POST",
+							data: { lstIds: dataValue },
+							method: "GET",
+							dataType: "text",
+							success: function (res) {
+								MessageToast.show("Item removido!", { duration: 3000 });
+							},
+							error: function (err) {
+								MessageToast.show("Erro: " + err, { duration: 3000 });
+							}
+						});
+
+						me.getView().getModel().refresh();
+					}
+				}
+			});
+		},
+		
+		onAreacaoSelect: function (evt) {
+			var remove = evt.getSource().getSelectedItem().getBindingContext().getObject().REMOVIDO;
+			this.getView().setModel(new sap.ui.model.json.JSONModel({
+				isSelected: !remove
+			}), "selected");
+		},
+		
+		onPressBreadcrumb: function(event) {
+			this.getOwnerComponent().getRouter().navTo(event);
+		}
 	});
 }, true);

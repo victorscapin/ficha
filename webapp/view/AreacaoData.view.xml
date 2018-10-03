@@ -2,10 +2,11 @@
 <mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
 	controllerName="Belagricola.Ficha.controller.AreacaoData">
 	<Page title="Gerência de Areações" showNavButton="true" navButtonPress="onNavBack">
+		<Breadcrumbs currentLocationText="Dados da Areação">
+			<Link press="onPressBreadcrumb('RouteView1')" text="Ficha Inteligente"></Link>
+			<Link press="onPressBreadcrumb('RouteAreacao')" text="Areação"></Link>
+		</Breadcrumbs>
 		<f:Form id="form" editable="true">
-			<f:title>
-				<core:Title text="Areação"/>
-			</f:title>
 			<f:layout>
 				<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
 					emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>

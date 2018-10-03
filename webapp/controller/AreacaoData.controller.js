@@ -33,7 +33,7 @@ sap.ui.define([
 			if (!params["?areacaoPath"]) {
 				var areacaoVazio = new sap.ui.model.json.JSONModel({
 					ID: "",
-					IDUSUARIO: "",
+					IDUSUARIO: 1,
 					IDFILIAL: "",
 					IDSILO: "",
 					DATACADASTRO: new Date(),
@@ -45,8 +45,9 @@ sap.ui.define([
 				});
 				form.setModel(areacaoVazio, "areacao");
 			} else {
-				params["?areacaoPath"].DATAOPERACAO = new Date(params["?areacaoPath"].DATAOPERACAO);
-				params["?areacaoPath"].DATACADASTRO = new Date(params["?areacaoPath"].DATACADASTRO);
+				var date = new Date(params["?areacaoPath"].DATAOPERACAO);
+				params["?areacaoPath"].DATAOPERACAO = new Date(date.setDate(date.getDate() + 1));
+				params["?areacaoPath"].DATACADASTRO = new Date();
 				var areacao = new sap.ui.model.json.JSONModel(params["?areacaoPath"]);
 				form.setModel(areacao, "areacao");
 			}
@@ -65,12 +66,17 @@ sap.ui.define([
 	        	MessageToast.show("Preencha todos os campos obrigatórios.", { duration: 3000 });
 	        	return;
 	        }/*eslint-disable*/
-			data.ID = parseInt(data.ID);
+			if(data.ID) data.ID = parseInt(data.ID);
+			data.IDUSUARIO = parseInt(data.IDUSUARIO);
 			data.IDFILIAL = parseInt(this.getView().byId("filial").getSelectedKey());
 			data.IDSILO = parseInt(data.IDSILO);
-			console.log(data.ID);
+			data.HRDIA = parseInt(data.HRDIA);
+			data.REMOVIDO = parseInt(data.REMOVIDO);
+			data.TEMPERATURAAMBIENTE = parseInt(data.TEMPERATURAAMBIENTE);
+			data.UMIDADERELATIVA = parseInt(data.UMIDADERELATIVA);
+			
 			jQuery.ajax({
-				url: data.ID !== NaN ? "/ServiceOData/FichaInteligente/Areacao/update.xsjs" : "/ServiceOData/FichaInteligente/Areacao/insert.xsjs",
+				url: data.ID ? "/ServiceOData/FichaInteligente/Areacao/update.xsjs" : "/ServiceOData/FichaInteligente/Areacao/insert.xsjs",
 				async: false,
 				TYPE: "POST",
 				data: { dataobject: JSON.stringify(data) },
@@ -86,6 +92,9 @@ sap.ui.define([
 			});
 			this.getView().getModel().refresh();
 			this.onNavBack();
+		},
+		onPressBreadcrumb: function(event) {
+			this.getOwnerComponent().getRouter().navTo(event);
 		}
 	});
 }, true);
