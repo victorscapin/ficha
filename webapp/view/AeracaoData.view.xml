@@ -1,10 +1,10 @@
 
 <mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
-	controllerName="Belagricola.Ficha.controller.AreacaoData">
+	controllerName="Belagricola.Ficha.controller.AeracaoData">
 	<Page title="Gerência de Areações" showNavButton="true" navButtonPress="onNavBack">
 		<Breadcrumbs currentLocationText="Dados da Areação">
 			<Link press="onPressBreadcrumb('RouteView1')" text="Ficha Inteligente"></Link>
-			<Link press="onPressBreadcrumb('RouteAreacao')" text="Areação"></Link>
+			<Link press="onPressBreadcrumb('RouteAeracao')" text="Areação"></Link>
 		</Breadcrumbs>
 		<f:Form id="form" editable="true">
 			<f:layout>
@@ -15,7 +15,7 @@
 				<f:FormContainer>
 					<f:FormElement label="Filial">
 						<f:fields required="true">
-							<Select id="filial" selectedKey="{ path: 'areacao>/IDFILIAL'}" items="{/FILIALDATA}" enabled="{edit>/isEdit}">
+							<Select id="filial" selectedKey="{ path: 'aeracao>/IDFILIAL'}" items="{/FILIALDATA}" enabled="{edit>/isEdit}">
 								<items>
 									<core:Item text="{NOME}" key="{ID}"/>
 								</items>
@@ -24,7 +24,7 @@
 					</f:FormElement>
 					<f:FormElement label="Silos">
 						<f:fields required="true">
-							<Select id="silos" selectedKey="{ path: 'areacao>/IDSILO'}" items="{/SILODATA}" enabled="{edit>/isEdit}">
+							<Select id="silos" selectedKey="{ path: 'aeracao>/IDSILO'}" items="{/SILODATA}" enabled="{edit>/isEdit}">
 								<items>
 									<core:Item text="{NOME}" key="{ID}"/>
 								</items>
@@ -33,31 +33,31 @@
 					</f:FormElement>
 					<f:FormElement label="Data Operação">
 						<f:fields>
-							<DatePicker id="dataOperacao" dateValue="{areacao>/DATAOPERACAO}" required="true"
+							<DatePicker id="dataOperacao" dateValue="{aeracao>/DATAOPERACAO}" required="true"
 								editable="{edit>/isEdit}"></DatePicker>
 						</f:fields>
 					</f:FormElement>
 					<f:FormElement label="N° de Hr./Dia">
 						<f:fields>
-							<Input value="{ path: 'areacao>/HRDIA', type: 'sap.ui.model.type.Integer', constraints: { maxLength: 50}}" id="hrDia" required="true"
+							<Input value="{ path: 'aeracao>/HRDIA', type: 'sap.ui.model.type.Integer', constraints: { maxLength: 50}}" id="hrDia" required="true"
 								editable="{edit>/isEdit}"/>
 						</f:fields>
 					</f:FormElement>
 					<f:FormElement label="Temperatura Ambiente (C)">
 						<f:fields>
-							<Input value="{ path: 'areacao>/TEMPERATURAAMBIENTE', type: 'sap.ui.model.type.Float', constraints: { maxLength: 50}}"
+							<Input value="{ path: 'aeracao>/TEMPERATURAAMBIENTE', type: 'sap.ui.model.type.Float', constraints: { maxLength: 50}}"
 								id="temperaturaAmbiente" required="true" editable="{edit>/isEdit}"/>
 						</f:fields>
 					</f:FormElement>
 					<f:FormElement label="Umidade Relatíva (%)">
 						<f:fields>
-							<Input value="{ path: 'areacao>/UMIDADERELATIVA', type: 'sap.ui.model.type.Float', constraints: { maxLength: 50}}" id="umidadeRelativa"
+							<Input value="{ path: 'aeracao>/UMIDADERELATIVA', type: 'sap.ui.model.type.Float', constraints: { maxLength: 50}}" id="umidadeRelativa"
 								required="true" editable="{edit>/isEdit}"/>
 						</f:fields>
 					</f:FormElement>
 					<f:FormElement label="Observação">
 						<f:fields>
-							<TextArea value="{ path: 'areacao>/OBSERVACAO', type: 'sap.ui.model.type.String', constraints: { maxLength: 200 } }" id="observacao"
+							<TextArea value="{ path: 'aeracao>/OBSERVACAO', type: 'sap.ui.model.type.String', constraints: { maxLength: 200 } }" id="observacao"
 								editable="{edit>/isEdit}"/>
 						</f:fields>
 					</f:FormElement>

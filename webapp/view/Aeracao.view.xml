@@ -1,8 +1,8 @@
 
-<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="Belagricola.Ficha.controller.Areacao" xmlns="sap.m">
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="Belagricola.Ficha.controller.Aeracao" xmlns="sap.m">
 	<Page showHeader="true" title="Gerência de Areações" showFooter="true" showNavButton="true" navButtonPress="_onPageNavButtonPress">
 		<content>
-			<Table id="grdAreacao" mode="SingleSelectLeft" selectionChange="onAreacaoSelect" items="{ path : '/AREACAODATA', sorter: { path: 'ID' }, filters : [ { path : 'REMOVIDO', operator : 'EQ', value1 : 0 } ] }">
+			<Table id="grdAeracao" mode="SingleSelectLeft" selectionChange="onAeracaoSelect" items="{ path : '/AERACAODATA', sorter: { path: 'ID' }, filters : [ { path : 'REMOVIDO', operator : 'EQ', value1 : 0 } ] }">
 				<headerToolbar>
 					<Toolbar>
 						<Breadcrumbs currentLocationText="Areações">
@@ -28,7 +28,7 @@
 					</Column>
 				</columns>
 				<items>
-					<ColumnListItem type="Navigation" press="clicaAreacao">
+					<ColumnListItem type="Navigation" press="clicaAeracao">
 						<cells>
 							<ObjectIdentifier title="{OBSERVACAO}"/>
 							<ObjectIdentifier title="{HRDIA}"/>

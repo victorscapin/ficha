@@ -9,7 +9,7 @@ sap.ui.define([
 ], function (Controller, History, Filter, FilterOperator, MessageToast, MessageBox) {
 	"use strict";
 
-	return Controller.extend("Belagricola.Ficha.controller.Areacao", {
+	return Controller.extend("Belagricola.Ficha.controller.Aeracao", {
 
 		onInit: function () {
 			this.getView().setModel(new sap.ui.model.json.JSONModel({
@@ -31,15 +31,15 @@ sap.ui.define([
 		},
 		
 		onNewPress: function() {
-			this.getOwnerComponent().getRouter().navTo("RouteAreacaoData");
+			this.getOwnerComponent().getRouter().navTo("RouteAeracaoData");
 		},
 		
-		clicaAreacao: function(evt) {
+		clicaAeracao: function(evt) {
 			var item = evt.getSource();
 			var router = sap.ui.core.UIComponent.getRouterFor(this);
 			var data = item.getBindingContext().getObject();
-			router.navTo("RouteAreacaoData", {
-				areacaoPath: {
+			router.navTo("RouteAeracaoData", {
+				aeracaoPath: {
 					ID: data.ID,
 					IDUSUARIO: data.IDUSUARIO,
 					IDFILIAL: data.IDFILIAL,
@@ -63,7 +63,7 @@ sap.ui.define([
 				actions: [MessageBox.Action.YES, MessageBox.Action.NO],
 				onClose: function (sButton) {
 					if (sButton === MessageBox.Action.YES) {
-						var aItems = me.getView().byId("grdAreacao").getItems();
+						var aItems = me.getView().byId("grdAeracao").getItems();
 						var aSelectedItems = [];
 						for (var i = 0; i < aItems.length; i++) {
 							if (aItems[i].getSelected())
@@ -72,7 +72,7 @@ sap.ui.define([
 
 						var dataValue = JSON.stringify(aSelectedItems.toString());
 						jQuery.ajax({
-							url: "/ServiceOData/FichaInteligente/Areacao/delete.xsjs",
+							url: "/ServiceOData/FichaInteligente/Aeracao/delete.xsjs",
 							async: false,
 							TYPE: "POST",
 							data: { lstIds: dataValue },
@@ -92,7 +92,7 @@ sap.ui.define([
 			});
 		},
 		
-		onAreacaoSelect: function (evt) {
+		onAeracaoSelect: function (evt) {
 			var remove = evt.getSource().getSelectedItem().getBindingContext().getObject().REMOVIDO;
 			this.getView().setModel(new sap.ui.model.json.JSONModel({
 				isSelected: !remove

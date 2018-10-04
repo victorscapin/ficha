@@ -112,14 +112,14 @@
 					"target": ["TargetSiloSafra"]
 				},
 				{
-					"name": "RouteAreacao",
-					"pattern": "RouteAreacao",
-					"target": ["TargetAreacao"]
+					"name": "RouteAeracao",
+					"pattern": "RouteAeracao",
+					"target": ["TargetAeracao"]
 				},
 				{
-					"name": "RouteAreacaoData",
-					"pattern": "RouteAreacaoData/:?areacaoPath:",
-					"target": ["TargetAreacaoData"]
+					"name": "RouteAeracaoData",
+					"pattern": "RouteAeracaoData/:?aeracaoPath:",
+					"target": ["TargetAeracaoData"]
 				},
 				{
 					"name": "RouteSondagem",
@@ -167,17 +167,17 @@
 					"clearControlAggregation": false,
 					"viewName": "SiloSafra"
 				},
-				"TargetAreacao": {
+				"TargetAeracao": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
-					"viewName": "Areacao"
+					"viewName": "Aeracao"
 				},
-				"TargetAreacaoData": {
+				"TargetAeracaoData": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
-					"viewName": "AreacaoData"
+					"viewName": "AeracaoData"
 				},
 				"TargetSondagem": {
 					"viewType": "XML",

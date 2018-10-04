@@ -4,7 +4,7 @@
 		<pages>
 			<Page title="Ficha Inteligente">
 				<content>
-					<GenericTile header="Areacoes" subheader="Gerência de Areações" frameType="OneByOne" class="sapUiResponsiveMargin" press="onToRouteAreacao">
+					<GenericTile header="Aeracoes" subheader="Gerência de Aerações" frameType="OneByOne" class="sapUiResponsiveMargin" press="onToRouteAeracao">
 						<TileContent footer="" unit="">
 							<ImageContent src="sap-icon://offsite-work"/>
 						</TileContent>
