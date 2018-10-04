@@ -1,3 +1,21 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<f:FormContainer title="Termometria" id="term-container">
+		<f:formElements>
+			<f:FormElement label="Data da operação">
+				<DatePicker dateValue="{termometria>/DATAOP}"/>
+			</f:FormElement>
+			<f:FormElement label="Temperatura Ambiente">
+				<Input value="{ path: 'termometria>/TEMPAMB', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 1 } }" required="true"/>
+			</f:FormElement>
+			<f:FormElement label="Temperatura Máxima">
+				<Input  value="{ path: 'termometria>/TEMPMAX', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 1 } }" required="true"/>
+			</f:FormElement>
+			<f:FormElement label="Nº Graus acima 29ºC">
+				<Input value="{ path: 'termometria>/NGRAUS', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 1 } }" required="true"/>
+			</f:FormElement>
+			<f:FormElement label="Observação">
+				<TextArea value="{ path: 'termometria>/OBS', type: 'sap.ui.model.type.String', constraints: { maxLength: 200 } }"/>
+			</f:FormElement>
+		</f:formElements>
+	</f:FormContainer>
 </core:FragmentDefinition>
