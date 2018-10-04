@@ -18,6 +18,9 @@ sap.ui.define([
 		},
 		onToRouteSondagem: function() {
 			this.getOwnerComponent().getRouter().navTo("RouteSondagem");
+		},
+		onToRouteTratamentoFita: function() {
+			this.getOwnerComponent().getRouter().navTo("RouteTratamentoFita");
 		}
 		
 	});

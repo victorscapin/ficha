@@ -19,6 +19,11 @@
 							<ImageContent src="sap-icon://endoscopy"/>
 						</TileContent>
 					</GenericTile>
+					<GenericTile header="Tratamento Fita" subheader="Gerência de tratamento de fita" frameType="OneByOne" class="sapUiResponsiveMargin" press="onToRouteTratamentoFita">
+						<TileContent footer="" unit="">
+							<ImageContent src="sap-icon://instance"/>
+						</TileContent>
+					</GenericTile>
 				</content>
 			</Page>
 		</pages>

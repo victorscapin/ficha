@@ -130,6 +130,16 @@
 					"name": "RouteSondagemData",
 					"pattern": "RouteSondagemData",
 					"target": ["TargetSondagemData"]
+				},
+				{
+					"name": "RouteTratamentoFita",
+					"pattern": "RouteTratamentoFita",
+					"target": ["TargetTratamentoFita"]
+				},
+				{
+					"name": "RouteTratamentoFitaData",
+					"pattern": "RouteTratamentoFitaData",
+					"target": ["TargetTratamentoFitaData"]
 				}
 			],
 			"targets": {
@@ -180,6 +190,19 @@
 					"transition": "slide",
 					"clearControlAggregtion": false,
 					"viewName": "SondagemData"
+				},
+				"TargetTratamentoFita": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregtion": false,
+					"viewName": "TratamentoFita"
+				}
+				,
+				"TargetTratamentoFitaData": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregtion": false,
+					"viewName": "TratamentoFitaData"
 				}
 			}
 		}
