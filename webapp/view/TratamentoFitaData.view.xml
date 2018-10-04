@@ -45,11 +45,24 @@
 					</f:FormElement>
 					<f:FormElement label="Qtde Grãos (Kg)">
 						<f:fields>
-							<Input value="{ path: 'tratamentoFita>/QTDEGRAOS', type: 'sap.ui.model.type.Integer', constraints: { maxLength: 50}}" id="qtdegraos"
+							<Input value="{ path: 'tratamentoFita>/QTDEGRAOS', type: 'sap.ui.model.type.Float', constraints: { maxLength: 50}}" id="qtdegraos"
 								required="true" editable="{edit>/isEdit}"/>
 						</f:fields>
 					</f:FormElement>
-					
+					<f:FormElement label="Consumo Total">
+						<f:fields>
+							<Input value="{ path: 'tratamentoFita>/CONSUMOTOTAL', type: 'sap.ui.model.type.Integer', constraints: { maxLength: 50}}" id="consumototal"
+								required="true" editable="{edit>/isEdit}"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="">
+						<RadioButtonGroup selectedIndex="{tratamentoFita>/TOTALPARCIAL}" columns="2">
+							<buttons>
+								<RadioButton text="Total"/>
+								<RadioButton text="Parcial"/>
+							</buttons>
+						</RadioButtonGroup>
+					</f:FormElement>
 					<f:FormElement label="Observação">
 						<f:fields>
 							<TextArea value="{ path: 'tratamentoFita>/OBSERVACAO', type: 'sap.ui.model.type.String', constraints: { maxLength: 200 } }" id="observacao"

@@ -16,7 +16,7 @@ sap.ui.define([
 				isSelected: false
 			}), "selected");
 		},
-		
+
 		_onPageNavButtonPress: function () {
 			var sPreviousHash = History.getInstance().getPreviousHash();
 			if (sPreviousHash !== undefined) {
@@ -25,33 +25,38 @@ sap.ui.define([
 				this.getOwnerComponent().getRouter().navTo("RouteView1", null, true);
 			}
 		},
-		
-		onSearch: function(event) {
-			
+
+		onSearch: function (event) {
+
 		},
-		
-		onNewPress: function() {
+
+		onNewPress: function () {
 			this.getOwnerComponent().getRouter().navTo("RouteTratamentoFitaData");
 		},
-		
-		clicaTratamentoFita: function(evt) {
-			/*var item = evt.getSource();
+
+		clicaTratamentoFita: function (evt) {
+			var item = evt.getSource();
 			var router = sap.ui.core.UIComponent.getRouterFor(this);
 			var data = item.getBindingContext().getObject();
 			router.navTo("RouteTratamentoFitaData", {
-				TratamentoFitaPath: {
+				tratamentoFitaPath: {
 					ID: data.ID,
 					IDUSUARIO: data.IDUSUARIO,
 					IDSILO: data.IDSILO,
 					DATACADASTRO: data.DATACADASTRO,
 					DATAOPERACAO: data.DATAOPERACAO,
+					IDPRODUTOAPLICADO: data.IDPRODUTOAPLICADO,
+					QTDEPRODUTO: data.QTDEPRODUTO,
+					QTDEGRAOS: data.QTDEGRAOS,
+					CONSUMOTOTAL: data.CONSUMOTOTAL,
+					TOTALPARCIAL: data.TOTALPARCIAL,
 					OBSERVACAO: data.OBSERVACAO,
 					REMOVIDO: data.REMOVIDO
 				}
-			});*/
+			});
 		},
 		onDeletePress: function () {
-			/*var me = this;
+			var me = this;
 
 			MessageBox.show("Deseja remover esse item?", {
 				icon: MessageBox.Icon.WARNING,
@@ -71,31 +76,37 @@ sap.ui.define([
 							url: "/ServiceOData/FichaInteligente/TratamentoFita/delete.xsjs",
 							async: false,
 							TYPE: "POST",
-							data: { lstIds: dataValue },
+							data: {
+								lstIds: dataValue
+							},
 							method: "GET",
 							dataType: "text",
 							success: function (res) {
-								MessageToast.show("Item removido!", { duration: 3000 });
+								MessageToast.show("Item removido!", {
+									duration: 3000
+								});
 							},
 							error: function (err) {
-								MessageToast.show("Erro: " + err, { duration: 3000 });
+								MessageToast.show("Erro: " + err, {
+									duration: 3000
+								});
 							}
 						});
 
 						me.getView().getModel().refresh();
 					}
 				}
-			});*/
+			});
 		},
-		
+
 		onTratamentoFitaSelect: function (evt) {
 			var remove = evt.getSource().getSelectedItem().getBindingContext().getObject().REMOVIDO;
 			this.getView().setModel(new sap.ui.model.json.JSONModel({
 				isSelected: !remove
 			}), "selected");
 		},
-		
-		onPressBreadcrumb: function(event) {
+
+		onPressBreadcrumb: function (event) {
 			this.getOwnerComponent().getRouter().navTo(event);
 		}
 	});

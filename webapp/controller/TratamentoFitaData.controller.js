@@ -1,4 +1,6 @@
-/* eslint no-console: 0 */
+/* eslint no-console: 0
+	radix: ["error", "as-needed"]
+*/
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/core/routing/History",
@@ -17,10 +19,11 @@ sap.ui.define([
 				IDSILO: 0,
 				DATACADASTRO: new Date(),
 				DATAOPERACAO: new Date(),
+				IDPRODUTOAPLICADO: 0,
 				QTDEPRODUTO: 0,
 				QTDEGRAOS: 0,
 				CONSUMOTOTAL: 0,
-				TOTALPARCIAL: 0,
+				TOTALPARCIAL: 1,
 				OBSERVACAO: ""
 			});
 
@@ -37,10 +40,11 @@ sap.ui.define([
 					IDSILO: "",
 					DATACADASTRO: new Date(),
 					DATAOPERACAO: new Date(),
+					IDPRODUTOAPLICADO: "",
 					QTDEPRODUTO: "",
 					QTDEGRAOS: "",
 					CONSUMOTOTAL: "",
-					TOTALPARCIAL: "",
+					TOTALPARCIAL: 1,
 					OBSERVACAO: ""
 				});
 				form.setModel(tratamentoFitaVazio, "tratamentoFita");
@@ -48,6 +52,7 @@ sap.ui.define([
 				var date = new Date(params["?tratamentoFitaPath"].DATAOPERACAO);
 				params["?tratamentoFitaPath"].DATAOPERACAO = new Date(date.setDate(date.getDate() + 1));
 				params["?tratamentoFitaPath"].DATACADASTRO = new Date();
+				params["?tratamentoFitaPath"].TOTALPARCIAL = parseInt(params["?tratamentoFitaPath"].TOTALPARCIAL);
 				var tratamentoFita = new sap.ui.model.json.JSONModel(params["?tratamentoFitaPath"]);
 				form.setModel(tratamentoFita, "tratamentoFita");
 			}
@@ -62,7 +67,7 @@ sap.ui.define([
 		},
 		onSave: function (event) {
 			var data = JSON.parse(this.byId("form").getModel("tratamentoFita").getJSON());
-			if (!data.DATAOPERACAO  || !data.IDPRODUTOAPLICADO ||  !data.QTDEPRODUTO || !data.QTDEGRAOS || !data.CONSUMOTOTAL || !data.TOTALPARCIAL) {
+			if (!data.DATAOPERACAO  || !data.IDPRODUTOAPLICADO ||  !data.QTDEPRODUTO || !data.QTDEGRAOS || !data.CONSUMOTOTAL) {
 				MessageToast.show("Preencha todos os campos obrigatórios.", {
 					duration: 3000
 				});
