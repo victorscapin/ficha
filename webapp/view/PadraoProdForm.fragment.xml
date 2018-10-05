@@ -1,0 +1,54 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<f:FormContainer title="Padrão de produto" id="pdr-prod-container">
+		<f:formElements>
+			<f:FormElement label="Umidade(%)">
+				<Input value="{ path: 'padrao>/UMIDADE', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 1 } }" required="true"/>
+			</f:FormElement>
+			<f:FormElement label="Ardido(%)">
+				<Input value="{ path: 'padrao>/ARDIDO', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 1 } }" required="true"/>
+			</f:FormElement>
+			<f:FormElement label="Avariado(%)">
+				<Input value="{ path: 'padrao>/AVARIADO', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 1 } }" required="true"/>
+			</f:FormElement>
+			<f:FormElement label="Esverdeados(%)">
+				<Input value="{ path: 'padrao>/ESVERDEADO', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 1 } }" required="true"/>
+			</f:FormElement>
+			<f:FormElement label="Impureza(%)">
+				<Input value="{ path: 'padrao>/IMPUREZA', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 1 } }" required="true"/>
+			</f:FormElement>
+			<f:FormElement label="Trigulho(%)">
+				<Input value="{ path: 'padrao>/TRIGULHO', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 1 } }" required="true"/>
+			</f:FormElement>
+			<f:FormElement label="PH(%)">
+				<Input value="{ path: 'padrao>/PH', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 1 } }" required="true"/>
+			</f:FormElement>
+			<f:FormElement label="Presença insetos">
+				<RadioButtonGroup selectedIndex="{padrao>/INSETOS}" columns="2">
+					<buttons>
+						<RadioButton text="Não"/>
+						<RadioButton text="Sim"/>
+					</buttons>
+				</RadioButtonGroup>
+			</f:FormElement>
+			<f:FormElement label="Condensação Massa">
+				<RadioButtonGroup selectedIndex="{padrao>/CONDENSACAO}" columns="2">
+					<buttons>
+						<RadioButton text="Não"/>
+						<RadioButton text="Sim"/>
+					</buttons>
+				</RadioButtonGroup>
+			</f:FormElement>
+			<f:FormElement label="Odor não caracteristico">
+				<RadioButtonGroup selectedIndex="{padrao>/ODOR}" columns="2">
+					<buttons>
+						<RadioButton text="Não"/>
+						<RadioButton text="Sim"/>
+					</buttons>
+				</RadioButtonGroup>
+			</f:FormElement>
+			<f:FormElement label="Observação">
+				<TextArea value="{ path: 'padrao>/OBS', type: 'sap.ui.model.type.String', constraints: { maxLength: 200 } }"/>
+			</f:FormElement>
+		</f:formElements>
+	</f:FormContainer>
+</core:FragmentDefinition>

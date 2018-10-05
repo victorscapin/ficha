@@ -112,14 +112,14 @@
 					"target": ["TargetSiloSafra"]
 				},
 				{
-					"name": "RouteAreacao",
-					"pattern": "RouteAreacao",
-					"target": ["TargetAreacao"]
+					"name": "RouteAeracao",
+					"pattern": "RouteAeracao",
+					"target": ["TargetAeracao"]
 				},
 				{
-					"name": "RouteAreacaoData",
-					"pattern": "RouteAreacaoData",
-					"target": ["TargetAreacaoData"]
+					"name": "RouteAeracaoData",
+					"pattern": "RouteAeracaoData/:?aeracaoPath:",
+					"target": ["TargetAeracaoData"]
 				},
 				{
 					"name": "RouteSondagem",
@@ -140,6 +140,16 @@
 					"name": "RouteMovimentacaoEstoqueData",
 					"pattern": "RouteMovimentacaoEstoqueData",
 					"target": ["TargetMovimentacaoEstoqueData"]
+				},
+				{
+					"name": "RouteTratamentoFita",
+					"pattern": "RouteTratamentoFita",
+					"target": ["TargetTratamentoFita"]
+				},
+				{
+					"name": "RouteTratamentoFitaData",
+					"pattern": "RouteTratamentoFitaData/:?tratamentoFitaPath:",
+					"target": ["TargetTratamentoFitaData"]
 				}
 			],
 			"targets": {
@@ -167,17 +177,17 @@
 					"clearControlAggregation": false,
 					"viewName": "SiloSafra"
 				},
-				"TargetAreacao": {
+				"TargetAeracao": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
-					"viewName": "Areacao"
+					"viewName": "Aeracao"
 				},
-				"TargetAreacaoData": {
+				"TargetAeracaoData": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
-					"viewName": "AreacaoData"
+					"viewName": "AeracaoData"
 				},
 				"TargetSondagem": {
 					"viewType": "XML",
@@ -202,6 +212,19 @@
 					"transition": "slide",
 					"clearControlAggregtion": false,
 					"viewName": "MovimentacaoEstoqueData"
+				},
+				"TargetTratamentoFita": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregtion": false,
+					"viewName": "TratamentoFita"
+				}
+				,
+				"TargetTratamentoFitaData": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregtion": false,
+					"viewName": "TratamentoFitaData"
 				}
 			}
 		}

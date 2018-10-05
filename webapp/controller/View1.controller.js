@@ -13,16 +13,20 @@ sap.ui.define([
 			this.getOwnerComponent().getRouter().navTo("RouteSilo");
 		},
 		
-		onToRouteAreacao: function () {
-			this.getOwnerComponent().getRouter().navTo("RouteAreacao");
+		onToRouteAeracao: function () {
+			this.getOwnerComponent().getRouter().navTo("RouteAeracao");
 		},
 		
 		onToRouteSondagem: function () {
 			this.getOwnerComponent().getRouter().navTo("RouteSondagem");
 		},
-		
+
 		onToRouteMovimentacaoEstoque: function () {
 			this.getOwnerComponent().getRouter().navTo("RouteMovimentacaoEstoque");
+		},
+		
+		onToRouteTratamentoFita: function() {
+			this.getOwnerComponent().getRouter().navTo("RouteTratamentoFita");
 		}
 		
 	});

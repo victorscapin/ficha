@@ -1,0 +1,47 @@
+
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="Belagricola.Ficha.controller.TratamentoFita" xmlns="sap.m">
+	<Page showHeader="true" title="Gerência de Tratamento Fita" showFooter="true" showNavButton="true" navButtonPress="_onPageNavButtonPress">
+		<content>
+			<Table id="grdTratamentoFita" mode="SingleSelectLeft" selectionChange="onTratamentoFitaSelect" items="{ path : '/TRATAMENTOFITADATA', sorter: { path: 'ID' }, filters : [ { path : 'REMOVIDO', operator : 'EQ', value1 : 0 } ] }">
+				<headerToolbar>
+					<Toolbar>
+						<Breadcrumbs currentLocationText="Tratamento Fita">
+							<Link press="onPressBreadcrumb('RouteView1')" text="Ficha Inteligente"></Link>
+						</Breadcrumbs>
+						<ToolbarSpacer/>
+						<Button text="Novo" press="onNewPress"/>
+						<Button text="Remover" press="onDeletePress" enabled="{selected>/isSelected}"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column id="colProdutoAplicado">
+						<Text text="Produto Aplicado"/>
+					</Column>
+					<Column id="colQtdeProduto">
+						<Text text="Qtd Produto"/>
+					</Column>
+					<Column id="colQtdeGraos">
+						<Text text="Qtde Grãos (Kg)"/>
+					</Column>
+					<Column id="colConsumoTotal">
+						<Text text="Qtde Grãos (Kg)"/>
+					</Column>
+					<Column id="colTotalParcial">
+						<Text text="Total Parcial"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation" press="clicaTratamentoFita">
+						<cells>
+							<ObjectIdentifier title="{IDPRODUTOAPLICADO}"/>
+							<ObjectIdentifier title="{QTDEPRODUTO}"/>
+							<ObjectIdentifier title="{QTDEGRAOS}"/>
+							<ObjectIdentifier title="{CONSUMOTOTAL}"/>
+							<ObjectIdentifier title="{TOTALPARCIAL}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+</mvc:View>
