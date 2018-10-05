@@ -16,8 +16,13 @@ sap.ui.define([
 		onToRouteAreacao: function () {
 			this.getOwnerComponent().getRouter().navTo("RouteAreacao");
 		},
-		onToRouteSondagem: function() {
+		
+		onToRouteSondagem: function () {
 			this.getOwnerComponent().getRouter().navTo("RouteSondagem");
+		},
+		
+		onToRouteMovimentacaoEstoque: function () {
+			this.getOwnerComponent().getRouter().navTo("RouteMovimentacaoEstoque");
 		}
 		
 	});

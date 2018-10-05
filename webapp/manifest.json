@@ -130,6 +130,16 @@
 					"name": "RouteSondagemData",
 					"pattern": "RouteSondagemData",
 					"target": ["TargetSondagemData"]
+				},
+				{
+					"name": "RouteMovimentacaoEstoque",
+					"pattern": "RouteMovimentacaoEstoque",
+					"target": ["TargetMovimentacaoEstoque"]
+				},
+				{
+					"name": "RouteMovimentacaoEstoqueData",
+					"pattern": "RouteMovimentacaoEstoqueData",
+					"target": ["TargetMovimentacaoEstoqueData"]
 				}
 			],
 			"targets": {
@@ -180,6 +190,18 @@
 					"transition": "slide",
 					"clearControlAggregtion": false,
 					"viewName": "SondagemData"
+				},
+				"TargetMovimentacaoEstoque": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregtion": false,
+					"viewName": "MovimentacaoEstoque"
+				},
+				"TargetMovimentacaoEstoqueData": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregtion": false,
+					"viewName": "MovimentacaoEstoqueData"
 				}
 			}
 		}

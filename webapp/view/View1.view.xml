@@ -6,7 +6,12 @@
 				<content>
 					<GenericTile header="Areacoes" subheader="Gerência de Areações" frameType="OneByOne" class="sapUiResponsiveMargin" press="onToRouteAreacao">
 						<TileContent footer="" unit="">
-							<ImageContent src="sap-icon://offsite-work"/>
+							<ImageContent src="sap-icon://heating-cooling"/>
+						</TileContent>
+					</GenericTile>
+					<GenericTile header="Movimentação Estoque" subheader="Gerência de Movimentações" frameType="OneByOne" class="sapUiResponsiveMargin" press="onToRouteMovimentacaoEstoque">
+						<TileContent footer="" unit="">
+							<ImageContent src="sap-icon://factory"/>
 						</TileContent>
 					</GenericTile>
 					<GenericTile header="Silos" subheader="Gerência de silos" frameType="OneByOne" class="sapUiResponsiveMargin" press="onToRouteSilo">

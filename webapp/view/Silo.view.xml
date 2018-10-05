@@ -1,4 +1,3 @@
-
 <mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="Belagricola.Ficha.controller.Silo" xmlns="sap.m">
 	<Page showHeader="true" title="Gerência de Silos" showFooter="true" showNavButton="true" navButtonPress="_onPageNavButtonPress">
 		<content>
