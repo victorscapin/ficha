@@ -16,6 +16,7 @@ sap.ui.define([
 			var tratamentoFita = new sap.ui.model.json.JSONModel({
 				ID: 0,
 				IDUSUARIO: 1,
+				IDFILIAL: 0,
 				IDSILO: 0,
 				DATACADASTRO: new Date(),
 				DATAOPERACAO: new Date(),
@@ -37,6 +38,7 @@ sap.ui.define([
 				var tratamentoFitaVazio = new sap.ui.model.json.JSONModel({
 					ID: "",
 					IDUSUARIO: 1,
+					IDFILIAL: "",
 					IDSILO: "",
 					DATACADASTRO: new Date(),
 					DATAOPERACAO: new Date(),
@@ -75,6 +77,7 @@ sap.ui.define([
 			} /*eslint-disable*/
 			if (data.ID) data.ID = parseInt(data.ID);
 			data.IDUSUARIO = parseInt(data.IDUSUARIO);
+			data.IDFILIAL = parseInt(data.IDFILIAL);
 			data.IDSILO = parseInt(data.IDSILO);
 			data.IDPRODUTOAPLICADO = parseInt(data.IDPRODUTOAPLICADO);
 			data.QTDEPRODUTO = parseInt(data.QTDEPRODUTO);

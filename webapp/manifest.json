@@ -94,62 +94,86 @@
 				{
 					"name": "RouteView1",
 					"pattern": "RouteView1",
-					"target": [ "TargetView1" ]
+					"target": [
+						"TargetView1"
+					]
 				},
 				{
 					"name": "RouteSilo",
 					"pattern": "RouteSilo",
-					"target": [ "TargetSilo" ]
+					"target": [
+						"TargetSilo"
+					]
 				},
 				{
 					"name": "RouteSiloData",
 					"pattern": "RouteSiloData/:?siloPath:",
-					"target": [ "TargetSiloData" ]
+					"target": [
+						"TargetSiloData"
+					]
 				},
 				{
 					"name": "RouteSiloSafra",
 					"pattern": "RouteSiloSafra/{siloSelecionado}",
-					"target": ["TargetSiloSafra"]
+					"target": [
+						"TargetSiloSafra"
+					]
 				},
 				{
 					"name": "RouteAeracao",
 					"pattern": "RouteAeracao",
-					"target": ["TargetAeracao"]
+					"target": [
+						"TargetAeracao"
+					]
 				},
 				{
 					"name": "RouteAeracaoData",
 					"pattern": "RouteAeracaoData/:?aeracaoPath:",
-					"target": ["TargetAeracaoData"]
+					"target": [
+						"TargetAeracaoData"
+					]
 				},
 				{
 					"name": "RouteSondagem",
 					"pattern": "RouteSondagem",
-					"target": ["TargetSondagem"]
+					"target": [
+						"TargetSondagem"
+					]
 				},
 				{
 					"name": "RouteSondagemData",
 					"pattern": "RouteSondagemData",
-					"target": ["TargetSondagemData"]
+					"target": [
+						"TargetSondagemData"
+					]
 				},
 				{
 					"name": "RouteMovimentacaoEstoque",
 					"pattern": "RouteMovimentacaoEstoque",
-					"target": ["TargetMovimentacaoEstoque"]
+					"target": [
+						"TargetMovimentacaoEstoque"
+					]
 				},
 				{
 					"name": "RouteMovimentacaoEstoqueData",
 					"pattern": "RouteMovimentacaoEstoqueData",
-					"target": ["TargetMovimentacaoEstoqueData"]
+					"target": [
+						"TargetMovimentacaoEstoqueData"
+					]
 				},
 				{
 					"name": "RouteTratamentoFita",
 					"pattern": "RouteTratamentoFita",
-					"target": ["TargetTratamentoFita"]
+					"target": [
+						"TargetTratamentoFita"
+					]
 				},
 				{
 					"name": "RouteTratamentoFitaData",
 					"pattern": "RouteTratamentoFitaData/:?tratamentoFitaPath:",
-					"target": ["TargetTratamentoFitaData"]
+					"target": [
+						"TargetTratamentoFitaData"
+					]
 				}
 			],
 			"targets": {
@@ -218,8 +242,7 @@
 					"transition": "slide",
 					"clearControlAggregtion": false,
 					"viewName": "TratamentoFita"
-				}
-				,
+				},
 				"TargetTratamentoFitaData": {
 					"viewType": "XML",
 					"transition": "slide",

@@ -12,9 +12,20 @@
 			</f:layout>
 			<f:formContainers>
 				<f:FormContainer>
+					<f:FormElement label="Filial">
+						<f:fields required="true">
+							<Select id="filial" selectedKey="{ path: 'tratamentoFita>/IDFILIAL'}" items="{ path : '/FILIALDATA' }" enabled="{edit>/isEdit}">
+								<items>
+									<core:Item text="{NOME}" key="{ID}"/>
+								</items>
+							</Select>
+						</f:fields>
+					</f:FormElement>
 					<f:FormElement label="Silos">
 						<f:fields required="true">
-							<Select id="silos" selectedKey="{ path: 'tratamentoFita>/IDSILO'}" items="{/SILODATA}" enabled="{edit>/isEdit}">
+							<Select id="silos"
+								items="{ path : '/SILODATA', sorter: { path: 'NOME' }, filters : [ { path : 'REMOVIDO', operator : 'EQ', value1 : 0 } ] }"
+								selectedKey="{ path: 'tratamentoFita>/IDSILO'}" enabled="{edit>/isEdit}">
 								<items>
 									<core:Item text="{NOME}" key="{ID}"/>
 								</items>
